@@ -1,7 +1,18 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import { FcSearch } from "react-icons/fc";
+import Typical from "react-typical";
 
 const Hero = () => {
+  const [text, setText] = useState(
+    "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptas aliquid esse fugiat maxime alias porro, voluptatibus cupiditate veniam exercitationem, magnam ex aperiam natus molestias iure sint sed error, atque fuga ad numquam temporibus velit expedita praesentium quia? Non cum molestiae provident, autem enim, ab aliquam quasi quam pariatur consequuntur animi?"
+  );
+
+  const handleChangeText = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setText(event.target.value);
+  };
+
   return (
     <div className="py-20">
       <div className="max-w-4xl mx-auto text-center">
@@ -13,20 +24,20 @@ const Hero = () => {
         <div className="relative max-w-xl mx-auto">
           <input
             type="text"
-            placeholder="Search stories..."
+            placeholder="Type something here..."
             className="w-full px-4 py-3 pr-12 border border-gray-300 rounded-full text-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
-            aria-label="Search stories"
+            aria-label="Dynamic Typing"
+            onChange={handleChangeText} // Update state with input value
           />
           <button type="button" className="absolute inset-y-0 right-0 flex items-center justify-center pr-4" aria-label="Search">
-            <FcSearch className=" w-6 h-6" />
+            <FcSearch className="w-6 h-6" />
           </button>
         </div>
       </div>
-      <p className="px-20 mt-5 text-[15px]">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis eius cum aperiam, exercitationem provident, alias qui quam illo, dolorum
-        repudiandae nihil. Repellat beatae repellendus voluptas. Necessitatibus sapiente ad totam, iste ab modi, corrupti natus aut assumenda
-        dignissimos obcaecati, quibusdam consequuntur debitis. Repellendus atque facere asperiores! Dolorum facere tempore et hic.
-      </p>
+      {/* Typing Effect with Dynamic Text */}
+      <div className="px-20 mt-20 text-[15px]">
+        <Typical steps={[text, 1000]} loop={Infinity} wrapper="p" />
+      </div>
     </div>
   );
 };
