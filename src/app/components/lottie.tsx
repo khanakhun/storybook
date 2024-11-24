@@ -1,16 +1,10 @@
-"use client"
+"use client";
 
-import { DotLottieReact } from '@lottiefiles/dotlottie-react'
-import React from 'react'
+import { DotLottieReact } from "@lottiefiles/dotlottie-react";
+import React from "react";
 
-const lottie = () => {
-  return (
-    <DotLottieReact
-    src="/chicken.lottie"
-    loop
-    autoplay
-  />
-  )
-}
+const Lottie = () => {
+  return <DotLottieReact className="w-96 h-auto" src="/chicken.lottie" loop autoplay />;
+};
 
-export default lottie
+export default Lottie;

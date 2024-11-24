@@ -4,7 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import enimage from "../assets/en.png";
 import heimage from "../assets/he.png";
-
+import icon from "../favicon.ico";
 const Navbar: React.FC = () => {
   const [language, setLanguage] = useState<"en" | "he">("en");
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
@@ -21,7 +21,10 @@ const Navbar: React.FC = () => {
   return (
     <nav className="flex items-center justify-between px-6 py-4 bg-white text-gray-800 shadow-md">
       {/* Left Side: Logo */}
-      <div className="text-lg font-bold">StoryBook</div>
+      <div className="flex gap-3">
+        <Image src={icon} alt={language === "en" ? "English" : "Hebrew"} width={24} height={24} className="rounded" />
+        <p className="text-lg font-bold "> StoryBook</p>
+      </div>
 
       {/* Right Side: Language Dropdown */}
       <div className="relative">
