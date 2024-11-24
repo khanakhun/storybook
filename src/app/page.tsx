@@ -1,7 +1,12 @@
 import React from "react";
+import Hero from "./sections/hero";
 
 const page = () => {
-  return <div>page</div>;
+  return (
+    <div>
+      <Hero />
+    </div>
+  );
 };
 
 export default page;
