@@ -43,12 +43,11 @@ export async function POST(request: Request) {
     // Convert the audio to a buffer
     const audioBuffer = await response.arrayBuffer();
 
-    // Create a blob from the audio buffer and return the audio URL
-    const audioBlob = new Blob([audioBuffer], { type: "audio/mp3" });
-    const audioUrl = URL.createObjectURL(audioBlob);
+    // Convert the buffer to a base64 string
+    const base64Audio = Buffer.from(audioBuffer).toString("base64");
 
-    // Return the audio URL in the response
-    return NextResponse.json({ audioUrl });
+    // Return the base64 string in the response
+    return NextResponse.json({ audioUrl: `data:audio/mp3;base64,${base64Audio}` });
   } catch (error) {
     console.error("Error calling OpenAI Audio API:", error);
     return NextResponse.json({ message: "Internal server error" }, { status: 500 });
