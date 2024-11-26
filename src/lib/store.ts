@@ -1,13 +1,12 @@
-import { configureStore } from "@reduxjs/toolkit";
+// store.ts
+import { create } from "zustand";
 
-export const makeStore = () => {
-  return configureStore({
-    reducer: {},
-  });
+type LanguageState = {
+  language: "en" | "he"; // Supported languages
+  setLanguage: (newLanguage: "en" | "he") => void;
 };
 
-// Infer the type of makeStore
-export type AppStore = ReturnType<typeof makeStore>;
-// Infer the `RootState` and `AppDispatch` types from the store itself
-export type RootState = ReturnType<AppStore["getState"]>;
-export type AppDispatch = AppStore["dispatch"];
+export const useLanguageStore = create<LanguageState>((set) => ({
+  language: "en", // Default language
+  setLanguage: (newLanguage: "en" | "he") => set(() => ({ language: newLanguage })),
+}));

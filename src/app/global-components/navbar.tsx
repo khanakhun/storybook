@@ -1,12 +1,14 @@
 "use client";
 
-import { useState } from "react";
 import Image from "next/image";
+import { useState } from "react";
 import enimage from "../assets/en.png";
 import heimage from "../assets/he.png";
 import icon from "../favicon.ico";
+import { useLanguageStore } from "@/lib/store";
+
 const Navbar: React.FC = () => {
-  const [language, setLanguage] = useState<"en" | "he">("en");
+  const { language, setLanguage } = useLanguageStore(); // Zustand hooks
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
 
   const toggleDropdown = () => {
@@ -14,8 +16,8 @@ const Navbar: React.FC = () => {
   };
 
   const selectLanguage = (lang: "en" | "he") => {
-    setLanguage(lang);
-    setIsDropdownOpen(false); // Close the dropdown after selection
+    setLanguage(lang); // Update Zustand store
+    setIsDropdownOpen(false); // Close dropdown
   };
 
   return (
@@ -23,7 +25,7 @@ const Navbar: React.FC = () => {
       {/* Left Side: Logo */}
       <div className="flex gap-3">
         <Image src={icon} alt={language === "en" ? "English" : "Hebrew"} width={24} height={24} className="rounded" />
-        <p className="text-lg font-bold "> StoryBook</p>
+        <p className="text-lg font-bold">StoryBook</p>
       </div>
 
       {/* Right Side: Language Dropdown */}
