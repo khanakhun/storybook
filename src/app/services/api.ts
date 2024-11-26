@@ -1,9 +1,10 @@
 import axios from "axios";
 
 // Generic function to handle API requests
-export const generateStory = async (prompt: string): Promise<string> => {
+export const generateStory = async (prompt: string, language: string): Promise<string> => {
   try {
-    const res = await axios.post("/api/get-story", { prompt });
+    const res = await axios.post("/api/get-story", { prompt, language });
+
     if (res.status === 200 && res.data.message) {
       return res.data.message;
     }

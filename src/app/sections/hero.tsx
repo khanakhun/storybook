@@ -8,8 +8,10 @@ import InputBar from "../global-components/InputBar";
 import LoaderWrapper from "../global-components/LoaderWrapper";
 import StoryDisplay from "../global-components/StoryDisplay";
 import MainCarousel from "../global-components/MainCarousel";
+import { useLanguageStore } from "@/lib/store";
 
 const Hero = () => {
+  const { language } = useLanguageStore(); // Zustand hooks
   const [text, setText] = useState("");
   const [response, setResponse] = useState("");
   const [loading, setLoading] = useState(false);
@@ -28,7 +30,7 @@ const Hero = () => {
     setLoading(true);
 
     try {
-      const story = await generateStory(text);
+      const story = await generateStory(text, language);
       setResponse(story);
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {

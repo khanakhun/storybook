@@ -5,12 +5,15 @@ import { FaCirclePause } from "react-icons/fa6";
 import { FaPlayCircle } from "react-icons/fa";
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 import { FaStopCircle } from "react-icons/fa";
+import { useLanguageStore } from "@/lib/store";
 
 interface StoryDisplayProps {
   story: string;
 }
 
 const StoryDisplay: React.FC<StoryDisplayProps> = ({ story }) => {
+  const { language } = useLanguageStore(); // Zustand hooks
+
   const [isLoading, setIsLoading] = useState(false);
   const [audioUrl, setAudioUrl] = useState<string | null>(null);
   const [voice, setVoice] = useState("alloy");
@@ -47,6 +50,7 @@ const StoryDisplay: React.FC<StoryDisplayProps> = ({ story }) => {
       } else {
         setAudioUrl(response.audioUrl);
       }
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       setError(`Error generating speech: ${error.message}`);
     } finally {
@@ -85,7 +89,7 @@ const StoryDisplay: React.FC<StoryDisplayProps> = ({ story }) => {
   return (
     <div className="p-6 text-white rounded-lg shadow-lg  mx-auto">
       <div className="flex justify-between items-center mb-6">
-        <h2 className="text-3xl font-semibold text-white">Your Story</h2>
+        <h2 className="text-3xl font-semibold text-white">{language === "en" ? " Your Story" : "הסיפור שלך"}</h2>
         {isLoading && (
           <div className="flex flex-col items-center">
             <DotLottieReact className="w-auto h-32" src={"/voice.lottie"} loop autoplay />

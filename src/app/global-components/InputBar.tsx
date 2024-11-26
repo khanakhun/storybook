@@ -1,3 +1,4 @@
+import { useLanguageStore } from "@/lib/store";
 import React from "react";
 import { FcSearch } from "react-icons/fc";
 
@@ -10,11 +11,13 @@ interface InputBarProps {
 }
 
 const InputBar: React.FC<InputBarProps> = ({ value, onChange, onKeyDown, onSearch, loading }) => {
+  const { language } = useLanguageStore(); // Zustand hooks
+
   return (
     <div className="relative max-w-xl mx-auto">
       <input
         type="text"
-        placeholder="e.g., 'A brave dragon who loves painting...'"
+        placeholder={language === "en" ? "e.g., 'A brave dragon who loves painting 🐉...'" : "למשל, 'דרקון אמיץ שאוהב לצייר... 🐉'"}
         className="w-full px-4 py-3 pr-12 border border-gray-300 rounded-full text-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
         aria-label="Type your prompt"
         value={value}
