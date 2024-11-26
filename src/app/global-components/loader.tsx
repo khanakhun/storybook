@@ -7,7 +7,7 @@ const AppLoader = () => {
       <div className="flex justify-center">
         <DotLottieReact className="w-48 h-48" src={"/loader.lottie"} loop autoplay />
       </div>
-      <p className="text-center text-white mt-4 text-[18px]">Creating a magical tale just for you please wait... ✨📚</p>
+      <p className="text-center text-white mt-4 text-[18px] animate-bounce">Creating a magical tale just for you please wait... ✨📚</p>
     </div>
   );
 };

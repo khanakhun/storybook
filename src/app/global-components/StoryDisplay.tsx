@@ -4,6 +4,7 @@ import { generateSpeech } from "../services/api";
 import { FaCirclePause } from "react-icons/fa6";
 import { FaPlayCircle } from "react-icons/fa";
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
+import { FaStopCircle } from "react-icons/fa";
 
 interface StoryDisplayProps {
   story: string;
@@ -74,9 +75,9 @@ const StoryDisplay: React.FC<StoryDisplayProps> = ({ story }) => {
 
   const handleVoiceChange = async (e: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedVoice = e.target.value;
-    setVoice(selectedVoice); // Update the voice state
+    setVoice(selectedVoice);
     if (audioRef.current) {
-      audioRef.current.pause(); // Stop current playback
+      audioRef.current.pause();
       setIsPlaying(false);
     }
   };
@@ -88,9 +89,10 @@ const StoryDisplay: React.FC<StoryDisplayProps> = ({ story }) => {
         {isLoading && (
           <div className="flex flex-col items-center">
             <DotLottieReact className="w-auto h-32" src={"/voice.lottie"} loop autoplay />
-            <p>Hang tight, we&apos;re making your words magical! 🎤✨</p>
+            <p className="animate-bounce">Hang tight, we&apos;re making your words magical! 🎤✨</p>
           </div>
         )}
+
         {!isLoading && (
           <div className="space-x-3">
             <button
@@ -116,31 +118,31 @@ const StoryDisplay: React.FC<StoryDisplayProps> = ({ story }) => {
                   className="p-3 bg-red-500 rounded-full text-white hover:bg-red-600 transition-all duration-200"
                   title="Stop"
                 >
-                  <FcSpeaker size={24} />
+                  <FaStopCircle size={24} />
                 </button>
               </>
             )}
           </div>
         )}
-      </div>
 
-      <div className="mt-4 mb-6">
-        <label htmlFor="voice-select" className="text-white font-medium mr-2">
-          Select Voice:
-        </label>
-        <select
-          id="voice-select"
-          value={voice}
-          onChange={handleVoiceChange} // Trigger API call on voice change
-          className="p-2 rounded bg-gray-800 text-white"
-        >
-          <option value="alloy">Alloy</option>
-          <option value="echo">Echo</option>
-          <option value="fable">Fable</option>
-          <option value="onyx">Onyx</option>
-          <option value="nova">Nova</option>
-          <option value="shimmer">Shimmer</option>
-        </select>
+        <div className="mt-4 mb-6 text-right">
+          <label htmlFor="voice-select" className="text-white font-medium mr-2">
+            Select Voice:
+          </label>
+          <select
+            id="voice-select"
+            value={voice}
+            onChange={handleVoiceChange} // Trigger API call on voice change
+            className="p-2 rounded bg-white text-black"
+          >
+            <option value="alloy">Alloy</option>
+            <option value="echo">Echo</option>
+            <option value="fable">Fable</option>
+            <option value="onyx">Onyx</option>
+            <option value="nova">Nova</option>
+            <option value="shimmer">Shimmer</option>
+          </select>
+        </div>
       </div>
 
       <div className="text-white mb-6">{formatStory(story)}</div>
