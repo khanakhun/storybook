@@ -18,7 +18,7 @@ export const generateStory = async (prompt: string, language: string): Promise<s
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const generateSpeech = async (input: string, voice: string): Promise<any> => {
   try {
-    const res = await axios.post("http://localhost:3000/api/speech-story", { input, voice });
+    const res = await axios.post("/api/speech-story", { input, voice });
 
     if (res.status === 200 && res.data) {
       return res.data; // Return the response data (presumably speech-related data)
