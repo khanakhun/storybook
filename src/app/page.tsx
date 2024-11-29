@@ -6,21 +6,29 @@ import rightTress from "../app/assets/svg/righttree.svg";
 import leftTress from "../app/assets/svg/leftree.svg";
 import rightCloud from "../app/assets/svg/rightcloud.svg";
 import leftCloud from "../app/assets/svg/leftcloud.svg";
+import { ToastContainer } from "react-toastify";
+
 const page = () => {
   return (
     <div>
+      <ToastContainer position="top-center" autoClose={5000} />
       <div style={{ background: "linear-gradient(180deg, #FFFFFF 0%, #AEFCFF 100%)" }}>
         <Navbar />
-        <div className="flex justify-between">
-          <Image src={rightCloud} alt="Hero Image" width={308} height={107} />
-          <Image src={leftCloud} alt="Hero Image" width={306} height={125} />
-        </div>
-        <div className="flex justify-between">
-          <Image src={rightTress} alt="Hero Image" width={359} height={407} />
-          <Image src={leftTress} alt="Hero Image" width={359} height={407} />
+        <div className="flex justify-between items-center">
+          <div>
+            <Image src={rightCloud} alt="Right Cloud" width={308} height={107} className="justify-self-end" />
+            <Image src={rightTress} alt="Right Tree" width={359} height={407} className="justify-self-end" />
+          </div>
+          <div>
+            <Hero />
+          </div>
+          <div>
+            <Image src={leftCloud} alt="Left Cloud" width={306} height={125} className="justify-self-start" />
+            <Image src={leftTress} alt="Left Tree" width={359} height={407} className="justify-self-start" />
+          </div>
         </div>
       </div>
-      <Hero />
+      {/* <Hero /> */}
     </div>
   );
 };
