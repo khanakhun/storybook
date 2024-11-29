@@ -5,8 +5,6 @@ import "react-toastify/dist/ReactToastify.css";
 import { generateStory } from "../services/api";
 import HeroText from "../global-components/HeroText";
 import InputBar from "../global-components/InputBar";
-import LoaderWrapper from "../global-components/LoaderWrapper";
-import StoryDisplay from "../global-components/StoryDisplay";
 import { useAppStore } from "@/lib/store";
 import Link from "next/link";
 
@@ -56,12 +54,7 @@ const Hero = () => {
           </button>
         </Link>
       </div>
-
-      <div className="px-20 mt-20">
-        {/* {loading && <LoaderWrapper />}
-        {response && !loading && <StoryDisplay story={response} />} */}
-        {/* {!response && !loading && <MainCarousel />} */}
-      </div>
+      <div className="px-20 mt-20"></div>
     </div>
   );
 };
