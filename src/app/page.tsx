@@ -7,6 +7,8 @@ import leftTress from "../app/assets/svg/leftree.svg";
 import rightCloud from "../app/assets/svg/rightcloud.svg";
 import leftCloud from "../app/assets/svg/leftcloud.svg";
 import { ToastContainer } from "react-toastify";
+import StoryLoader from "./global-components/storyLoader";
+import StoryResponse from "./sections/storyresponse";
 
 const page = () => {
   return (
@@ -28,7 +30,8 @@ const page = () => {
           </div>
         </div>
       </div>
-      {/* <Hero /> */}
+      <StoryLoader />
+      <StoryResponse />
     </div>
   );
 };

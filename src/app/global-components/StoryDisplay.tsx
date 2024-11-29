@@ -128,25 +128,6 @@ const StoryDisplay: React.FC<StoryDisplayProps> = ({ story }) => {
             )}
           </div>
         )}
-
-        <div className="mt-4 mb-6 text-right">
-          <label htmlFor="voice-select" className="text-white font-medium mr-2">
-            Select Voice:
-          </label>
-          <select
-            id="voice-select"
-            value={voice}
-            onChange={handleVoiceChange} // Trigger API call on voice change
-            className="p-2 rounded bg-white text-black"
-          >
-            <option value="alloy">Alloy</option>
-            <option value="echo">Echo</option>
-            <option value="fable">Fable</option>
-            <option value="onyx">Onyx</option>
-            <option value="nova">Nova</option>
-            <option value="shimmer">Shimmer</option>
-          </select>
-        </div>
       </div>
 
       <div className="text-white mb-6">{formatStory(story)}</div>
