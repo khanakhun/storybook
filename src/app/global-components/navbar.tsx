@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import { useLanguageStore } from "@/lib/store";
+import { useAppStore } from "@/lib/store";
 import logotext from "../assets/svg/text.svg";
 import logo from "../../app/assets/svg/cloud.svg";
 import fbIcon from "../../app/assets/svg/faebook.svg";
@@ -13,7 +13,7 @@ import enImage from "../assets/en.png";
 import heImage from "../assets/he.png";
 
 const Header: React.FC = () => {
-  const { language, setLanguage } = useLanguageStore();
+  const { language, setLanguage } = useAppStore();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const toggleDropdown = () => setIsDropdownOpen((prev) => !prev);

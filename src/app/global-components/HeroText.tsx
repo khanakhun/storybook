@@ -1,8 +1,8 @@
-import { useLanguageStore } from "@/lib/store";
+import { useAppStore } from "@/lib/store";
 import React from "react";
 
 const HeroText: React.FC = () => {
-  const { language } = useLanguageStore(); // Zustand hooks
+  const { language } = useAppStore(); // Zustand hooks
 
   return (
     <div className="max-w-4xl mx-auto text-center">

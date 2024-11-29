@@ -7,33 +7,29 @@ import HeroText from "../global-components/HeroText";
 import InputBar from "../global-components/InputBar";
 import LoaderWrapper from "../global-components/LoaderWrapper";
 import StoryDisplay from "../global-components/StoryDisplay";
-import { useLanguageStore } from "@/lib/store";
+import { useAppStore } from "@/lib/store";
+import Link from "next/link";
 
 const Hero = () => {
-  const { language } = useLanguageStore();
+  const { language, setStory, setLoading, isLoading } = useAppStore();
   const [text, setText] = useState("");
-  const [response, setResponse] = useState("");
-  const [loading, setLoading] = useState(false);
 
   const handleChangeText = (event: React.ChangeEvent<HTMLInputElement>) => {
     setText(event.target.value);
   };
-
   const handleGenerateStory = useCallback(async () => {
     if (!text.trim()) {
       toast("Please enter a prompt!");
       return;
     }
-
-    setResponse("");
+    setStory("");
     setLoading(true);
-
     try {
       const story = await generateStory(text, language);
-      setResponse(story);
+      setStory(story);
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
-      setResponse(error.message);
+      setStory(error.message);
     } finally {
       setLoading(false);
     }
@@ -50,18 +46,20 @@ const Hero = () => {
       <ToastContainer position="top-center" autoClose={5000} />
       <HeroText />
       <div className="flex gap-3 mt-20">
-        <InputBar value={text} onChange={handleChangeText} onKeyDown={handleKeyPress} onSearch={handleGenerateStory} loading={loading} />
-        <button
-          onClick={handleGenerateStory}
-          className="bg-[#3CFF57] text-black font-bold px-6 py-2 rounded-lg shadow-md hover:bg-green-500 transition"
-        >
-          Create
-        </button>
+        <InputBar value={text} onChange={handleChangeText} onKeyDown={handleKeyPress} onSearch={handleGenerateStory} loading={isLoading} />
+        <Link href={"/#storyloader"}>
+          <button
+            onClick={handleGenerateStory}
+            className="bg-[#3CFF57] text-black font-bold px-6 py-2 rounded-lg shadow-md hover:bg-green-500 transition"
+          >
+            Create
+          </button>
+        </Link>
       </div>
 
       <div className="px-20 mt-20">
-        {loading && <LoaderWrapper />}
-        {response && !loading && <StoryDisplay story={response} />}
+        {/* {loading && <LoaderWrapper />}
+        {response && !loading && <StoryDisplay story={response} />} */}
         {/* {!response && !loading && <MainCarousel />} */}
       </div>
     </div>

@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import Hero from "./sections/hero";
 import Image from "next/image";
@@ -9,8 +10,12 @@ import leftCloud from "../app/assets/svg/leftcloud.svg";
 import { ToastContainer } from "react-toastify";
 import StoryLoader from "./global-components/storyLoader";
 import StoryResponse from "./sections/storyresponse";
+import { useAppStore } from "@/lib/store";
 
 const page = () => {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const { story, isLoading } = useAppStore();
+
   return (
     <div>
       <ToastContainer position="top-center" autoClose={5000} />
@@ -30,8 +35,8 @@ const page = () => {
           </div>
         </div>
       </div>
-      <StoryLoader />
-      <StoryResponse />
+      {isLoading && <StoryLoader />}
+      {story && <StoryResponse />}
     </div>
   );
 };
