@@ -107,28 +107,35 @@ const StoryResponse = () => {
 
   return (
     <div className="relative bg-cover bg-center" style={{ backgroundImage: `url(${bg.src})` }}>
-      <div className="flex flex-col items-center justify-center h-full">
+      <div className="flex flex-col items-center justify-center h-full px-4 py-8">
         <div className="relative bg-white shadow-lg rounded-lg p-6 border-4 border-orange-500 max-w-4xl w-full text-center">
-          <div className="absolute -top-12 -left-12">
+          {/* Images Positioning */}
+          <div className="absolute -top-12 -left-12 hidden sm:block">
             <Image src={leftCloud} alt="Left Cloud" width={196} height={90} />
           </div>
-          <div className="absolute -top-32 -right-52">
+          <div className="absolute -top-32 -right-52 hidden sm:block">
             <Image src={rightCloud} alt="Right Cloud" width={366} height={147} />
           </div>
-          <div className="absolute -bottom-20 -left-52">
+          <div className="absolute -bottom-20 -left-52 hidden sm:block">
             <Image src={leftTree} alt="Left Tree" width={307} height={121} />
           </div>
-          <div className="absolute -bottom-20 -right-52">
+          <div className="absolute -bottom-20 -right-52 hidden sm:block">
             <Image src={rightTree} alt="Right Tree" width={307} height={121} />
           </div>
 
-          <div className="flex justify-between mb-4">
-            <h2 className="text-orange-500 font-bold text-2xl">Your Story</h2>
-            <div className="text-right">
-              <label htmlFor="voice-select" className="text-black font-medium mr-2">
+          {/* Title and Voice Selector */}
+          <div className="flex flex-wrap justify-between items-center mb-4">
+            <h2 className="text-orange-500 font-bold text-2xl sm:text-3xl">Your Story</h2>
+            <div className="text-right w-full sm:w-auto mt-2 sm:mt-0">
+              <label htmlFor="voice-select" className="text-black font-medium mr-2 block sm:inline">
                 Select Voice:
               </label>
-              <select id="voice-select" value={voice} onChange={handleVoiceChange} className="p-2 rounded bg-[#FF7F3E] text-white">
+              <select
+                id="voice-select"
+                value={voice}
+                onChange={handleVoiceChange}
+                className="p-2 rounded bg-[#FF7F3E] text-white w-full sm:w-auto mt-2 sm:mt-0"
+              >
                 {voices.map((v) => (
                   <option key={v.value} value={v.value}>
                     {v.label}
@@ -138,40 +145,52 @@ const StoryResponse = () => {
             </div>
           </div>
 
-          <div className="text-[#FF7F3E] text-lg leading-relaxed mt-5">{formattedStory}</div>
+          {/* Story Text */}
+          <div className="text-[#FF7F3E] text-lg sm:text-xl leading-relaxed mt-5 mb-6">{formattedStory}</div>
 
-          <div className="flex items-center justify-between mt-10">
-            <div className="flex items-center justify-between ">
-              <button
-                onClick={handleSpeakerClick}
-                className="bg-orange-500 text-white font-bold px-4 py-2 rounded shadow-md"
-                disabled={isLoading || !story || isPlaying}
-              >
-                {isLoading ? "Generating..." : "Generate Speech"}
-              </button>
-            </div>
+          {/* Action Buttons */}
+          <div className="flex flex-col sm:flex-row items-center justify-between mt-6">
+            <button
+              onClick={handleSpeakerClick}
+              className="bg-orange-500 text-white font-bold px-4 py-2 rounded shadow-md w-full sm:w-auto mb-4 sm:mb-0"
+              disabled={isLoading || !story || isPlaying}
+            >
+              {isLoading ? "Generating..." : "Generate Speech"}
+            </button>
+
             {audioUrl && (
-              <div className="flex gap-4 justify-center">
-                <button onClick={handlePlayPause} className="bg-blue-500 text-white font-bold px-4 py-2 rounded shadow-md">
+              <div className="flex gap-4 justify-center items-center w-full sm:w-auto">
+                <button onClick={handlePlayPause} className="bg-blue-500 text-white font-bold px-4 py-2 rounded shadow-md w-full sm:w-auto">
                   {isPlaying ? "Pause" : "Play"}
                 </button>
-                <button onClick={handleStop} className="bg-red-500 text-white font-bold px-4 py-2 rounded shadow-md">
+                <button onClick={handleStop} className="bg-red-500 text-white font-bold px-4 py-2 rounded shadow-md w-full sm:w-auto">
                   Stop
                 </button>
               </div>
             )}
+
             {audioUrl && (
-              <div className=" flex items-center justify-center">
+              <div className="flex items-center justify-center w-full sm:w-auto mt-4 sm:mt-0">
                 <label htmlFor="volume-slider" className="mr-4 text-gray-700 font-medium">
                   Volume:
                 </label>
-                <input id="volume-slider" type="range" min="0" max="1" step="0.1" value={volume} onChange={handleVolumeChange} className="w-48" />
+                <input
+                  id="volume-slider"
+                  type="range"
+                  min="0"
+                  max="1"
+                  step="0.1"
+                  value={volume}
+                  onChange={handleVolumeChange}
+                  className="w-48 sm:w-64"
+                />
               </div>
             )}
           </div>
 
+          {/* Error and Audio Controls */}
           {error && <p className="text-red-500 text-center mt-4">{error}</p>}
-          <div className="flex gap-2 items-center justify-center w-full mt-10">
+          <div className="flex gap-2 items-center justify-center w-full mt-6">
             {audioUrl && <audio ref={audioRef} src={audioUrl} controls onPlay={() => setIsPlaying(true)} onPause={() => setIsPlaying(false)} />}
           </div>
         </div>

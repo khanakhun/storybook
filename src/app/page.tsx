@@ -20,8 +20,8 @@ const page = () => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
     AOS.init({
-      duration: 2000, // Animation duration in ms
-      easing: "ease-out-back", // Easing function
+      duration: 2000,
+      easing: "ease-out-back",
     });
     return () => {
       AOS.refresh();
@@ -48,7 +48,7 @@ const page = () => {
         </div>
       </div>
       {isLoading && <StoryLoader />}
-      {!story && <StoryResponse />}
+      {story && <StoryResponse />}
     </div>
   );
 };
