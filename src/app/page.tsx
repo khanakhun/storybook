@@ -33,22 +33,22 @@ const page = () => {
       <ToastContainer position="top-center" autoClose={5000} />
       <div style={{ background: "linear-gradient(180deg, #FFFFFF 0%, #AEFCFF 100%)" }}>
         <Navbar />
-        <div className="flex justify-between items-center">
+        <div className="flex justify-between items-center md:flex-row flex-col">
           <div>
-            <Image src={rightCloud} alt="Right Cloud" data-aos="fade-right" width={308} height={107} className="justify-self-end" />
-            <Image src={rightTress} alt="Right Tree" data-aos="fade-up-right" width={359} height={407} className="justify-self-end" />
+            <Image src={rightCloud} alt="Right Cloud" width={308} height={107} className="justify-self-end" />
+            <Image src={rightTress} alt="Right Tree" width={359} height={407} className="justify-self-end" />
           </div>
-          <div data-aos="zoom-in">
+          <div>
             <Hero />
           </div>
           <div>
-            <Image src={leftCloud} alt="Left Cloud" data-aos="fade-left" width={306} height={125} className="justify-self-start" />
-            <Image src={leftTress} alt="Left Tree" data-aos="fade-up-left" width={359} height={407} className="justify-self-start" />
+            <Image src={leftCloud} alt="Left Cloud" width={306} height={125} className="justify-self-start" />
+            <Image src={leftTress} alt="Left Tree" width={359} height={407} className="justify-self-start" />
           </div>
         </div>
       </div>
       {isLoading && <StoryLoader />}
-      {story && <StoryResponse />}
+      {!story && <StoryResponse />}
     </div>
   );
 };

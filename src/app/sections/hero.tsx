@@ -43,7 +43,7 @@ const Hero = () => {
     <div className="">
       <ToastContainer position="top-center" autoClose={5000} />
       <HeroText />
-      <div className="flex gap-3 mt-20">
+      <div className="flex gap-3 mt-20 md:flex-row flex-col justify-center items-center p-2">
         <InputBar value={text} onChange={handleChangeText} onKeyDown={handleKeyPress} onSearch={handleGenerateStory} loading={isLoading} />
         <Link href={"/#storyloader"}>
           <button
