@@ -16,7 +16,7 @@ export const generateStory = async (prompt: string, language: string): Promise<s
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const generateSpeech = async (input: string, voice: string): Promise<any> => {
+export const generateSpeech = async (input: string | null, voice: string): Promise<any> => {
   try {
     const res = await axios.post("/api/speech-story", { input, voice });
 

@@ -1,4 +1,6 @@
-import { useLanguageStore } from "@/lib/store";
+import { useAppStore } from "@/lib/store";
+import Link from "next/link";
+
 import React from "react";
 import { FcSearch } from "react-icons/fc";
 
@@ -11,7 +13,7 @@ interface InputBarProps {
 }
 
 const InputBar: React.FC<InputBarProps> = ({ value, onChange, onKeyDown, onSearch, loading }) => {
-  const { language } = useLanguageStore(); // Zustand hooks
+  const { language } = useAppStore();
 
   return (
     <div className="relative max-w-xl mx-auto">
@@ -24,15 +26,17 @@ const InputBar: React.FC<InputBarProps> = ({ value, onChange, onKeyDown, onSearc
         onChange={onChange}
         onKeyDown={onKeyDown}
       />
-      <button
-        type="button"
-        className="absolute inset-y-0 right-0 flex items-center justify-center pr-4"
-        aria-label="Generate Story"
-        onClick={onSearch}
-        disabled={loading}
-      >
-        <FcSearch className={`w-6 h-6 ${loading ? "animate-spin" : ""}`} />
-      </button>
+      <Link href={"/#storyloader"}>
+        <button
+          type="button"
+          className="absolute inset-y-0 right-0 flex items-center justify-center pr-4"
+          aria-label="Generate Story"
+          onClick={onSearch}
+          disabled={loading}
+        >
+          <FcSearch className={`w-6 h-6 ${loading ? "animate-spin" : ""}`} />
+        </button>
+      </Link>
     </div>
   );
 };

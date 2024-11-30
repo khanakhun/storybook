@@ -1,26 +1,18 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import { Nunito } from "next/font/google";
 import "./globals.css";
-import Navbar from "./global-components/navbar";
-
-// Local Fonts
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
-
-// Google Font
-const nunito = Nunito({
-  subsets: ["latin"],
-  variable: "--font-nunito",
-  weight: ["300", "400", "600", "700"],
+const shantellSans = localFont({
+  src: [
+    { path: "./fonts/ShantellSans-Regular.ttf", weight: "400" },
+    { path: "./fonts/ShantellSans-Bold.ttf", weight: "700" },
+    { path: "./fonts/ShantellSans-Italic.ttf", weight: "400", style: "italic" },
+    { path: "./fonts/ShantellSans-BoldItalic.ttf", weight: "700", style: "italic" },
+    { path: "./fonts/ShantellSans-Light.ttf", weight: "300" },
+    { path: "./fonts/ShantellSans-SemiBold.ttf", weight: "600" },
+    { path: "./fonts/ShantellSans-Medium.ttf", weight: "500" },
+    { path: "./fonts/ShantellSans-ExtraBold.ttf", weight: "800" },
+  ],
+  variable: "--font-shantell-sans",
 });
 
 export const metadata: Metadata = {
@@ -35,8 +27,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body suppressHydrationWarning className={`${geistSans.variable} ${geistMono.variable} ${nunito.variable} antialiased`}>
-        <Navbar />
+      <body suppressHydrationWarning className={`${shantellSans.variable}  antialiased`}>
         {children}
       </body>
     </html>
