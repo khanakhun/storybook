@@ -11,6 +11,7 @@ import tiktokIcon from "../../app/assets/svg/Group-1.svg";
 import ytIcon from "../../app/assets/svg/Group.svg";
 import enImage from "../assets/en.png";
 import heImage from "../assets/he.png";
+import Link from "next/link";
 
 const Header: React.FC = () => {
   const { language, setLanguage } = useAppStore();
@@ -20,7 +21,7 @@ const Header: React.FC = () => {
   const toggleDropdown = () => setIsDropdownOpen((prev) => !prev);
   const toggleMobileMenu = () => setIsMobileMenuOpen((prev) => !prev);
 
-  const menuItems = ["About", "Watch"];
+  const menuItems = ["Create", "Listen"];
   const socialIcons = [
     { src: fbIcon, alt: "Facebook" },
     { src: igIcon, alt: "Instagram" },
@@ -38,7 +39,7 @@ const Header: React.FC = () => {
   };
 
   return (
-    <header className="w-[90%] mx-auto">
+    <header id="Create" className="w-[90%] mx-auto">
       <nav className="flex items-center justify-between px-6 py-4">
         {/* Hamburger Icon for Mobile */}
         <button onClick={toggleMobileMenu} className="md:hidden flex items-center focus:outline-none" aria-label="Toggle Mobile Menu">
@@ -50,9 +51,11 @@ const Header: React.FC = () => {
         {/* Logo */}
         <ul className="hidden md:flex items-center gap-6 text-gray-800 font-bold">
           {menuItems.map((item) => (
-            <li key={item} className="hover:text-orange-500 cursor-pointer">
-              {item}
-            </li>
+            <Link href={`#${item}`} key={item}>
+              <li key={item} className="hover:text-orange-500 cursor-pointer">
+                {item}
+              </li>
+            </Link>
           ))}
         </ul>
         <div className="relative flex items-center justify-center">
@@ -108,9 +111,11 @@ const Header: React.FC = () => {
         <div className="md:hidden bg-white shadow-lg rounded-lg mt-2">
           <ul className="flex flex-col items-start gap-4 p-4">
             {menuItems.map((item) => (
-              <li key={item} className="hover:text-orange-500 cursor-pointer">
-                {item}
-              </li>
+              <Link href={`#${item}`} key={item}>
+                <li key={item} className="hover:text-orange-500 cursor-pointer">
+                  {item}
+                </li>
+              </Link>
             ))}
 
             {/* Social Media Icons */}

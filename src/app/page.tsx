@@ -13,6 +13,8 @@ import StoryResponse from "./sections/storyresponse";
 import { useAppStore } from "@/lib/store";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import PromoBanner from "./sections/promobanner";
+import PreStories from "./sections/pre-stories";
 const page = () => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const { story, isLoading } = useAppStore();
@@ -49,6 +51,8 @@ const page = () => {
       </div>
       {isLoading && <StoryLoader />}
       {story && <StoryResponse />}
+      <PreStories />
+      <PromoBanner />
     </div>
   );
 };
