@@ -124,3 +124,18 @@ code {
   background: orange;
   border-radius: 1rem;
 }
+::-webkit-scrollbar {
+  width: 0; /* Remove horizontal scrollbar */
+  height: 0; /* Remove vertical scrollbar */
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+}
+
+/* Internet Explorer */
+::-ms-scrollbar {
+  width: 0; /* Remove scrollbar width */
+}

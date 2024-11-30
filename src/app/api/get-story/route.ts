@@ -18,7 +18,7 @@ export async function POST(request: Request) {
     if (!process.env.OPENAI_API_KEY) {
       return NextResponse.json({ message: "API key is missing!" }, { status: 500 });
     }
-    const prompter = `Create a fun and magical short story about ${prompt} in ${language === "en" ? "English" : "Hebrew"} language.`;
+    const prompter = `Create a fun and magical short story of 100 words about ${prompt} in ${language === "en" ? "English" : "Hebrew"} language.`;
     // Generate the story in the specified language
     const completion = await openai.chat.completions.create({
       model: "gpt-4",
