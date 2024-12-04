@@ -31,7 +31,6 @@ export const KidCarousel = ({ slice }: { slice: number }) => {
     <Carousel className=" lg:w-[70%] w-[60%]">
       <CarouselContent className="-ml-1">
         {storiesToShow.map((key: any, index: any) => {
-          console.log(key.image, "key");
           return (
             <CarouselItem key={index} className="pl-1 md:basis-1/2 lg:basis-1/3">
               <Link href={"/#storyloader"} onClick={() => handleGenerateStory(key.description[language])}>

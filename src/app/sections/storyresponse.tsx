@@ -10,6 +10,7 @@ import { useAppStore } from "@/lib/store";
 import { formatStory } from "@/lib/formattext";
 import { generateSpeech } from "../services/api";
 import AvatarSwapper from "../global-components/AvatarSwapper";
+import Typewriter from "../global-components/TypeWritter";
 
 const StoryResponse = () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -97,7 +98,6 @@ const StoryResponse = () => {
       audioRef.current.volume = newVolume;
     }
   };
-
   return (
     <div className="relative h-screen  ">
       <div className="flex flex-col items-center justify-center h-full px-4 py-8">
@@ -125,7 +125,11 @@ const StoryResponse = () => {
           </div>
 
           {/* Story Text */}
-          <div className="text-[#FF7F3E] text-lg sm:text-xl leading-relaxed mt-5 mb-6">{formattedStory}</div>
+          {formattedStory && (
+            <div className="text-[#FF7F3E] text-lg sm:text-xl leading-relaxed mt-5 mb-6">
+              <Typewriter text={formattedStory[0]?.props?.children} delay={50} />
+            </div>
+          )}
 
           {/* Action Buttons */}
           <div className="flex flex-col sm:flex-row items-center justify-between mt-6">
