@@ -10,8 +10,7 @@ import Link from "next/link";
 import { staticStories } from "@/lib/static-data";
 import Image from "next/image";
 
-export const KidCarousel = ({ slice }: { slice: number }) => {
-  const storiesToShow: any = slice === 0 ? staticStories.slice(0, 7) : staticStories.slice(7);
+export const KidCarousel = () => {
   const { language, setStory, setLoading }: any = useAppStore();
 
   const handleGenerateStory = async (text: string) => {
@@ -30,7 +29,7 @@ export const KidCarousel = ({ slice }: { slice: number }) => {
   return (
     <Carousel className=" lg:w-[70%] w-[60%]">
       <CarouselContent className="-ml-1">
-        {storiesToShow.map((key: any, index: any) => {
+        {staticStories.map((key: any, index: any) => {
           return (
             <CarouselItem key={index} className="pl-1 md:basis-1/2 lg:basis-1/3">
               <Link href={"/#storyloader"} onClick={() => handleGenerateStory(key.description[language])}>
