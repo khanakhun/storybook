@@ -15,7 +15,7 @@ const StoryResponse = () => {
   const { story } = useAppStore();
   const [isLoading, setIsLoading] = useState(false);
   const [audioUrl, setAudioUrl] = useState<string | null>(null);
-  const [voice, setVoice] = useState("Alloy");
+  const [voice, setVoice] = useState("alloy");
   const [isPlaying, setIsPlaying] = useState(false);
   const [volume, setVolume] = useState(1); // Default volume at max
   const [error, setError] = useState<string | null>(null);
@@ -77,8 +77,8 @@ const StoryResponse = () => {
     }
   };
 
-  const handleVoiceChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const selectedVoice = e.target.value;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const handleVoiceChange = (selectedVoice: any) => {
     setVoice(selectedVoice);
 
     if (audioRef.current) {
@@ -117,7 +117,7 @@ const StoryResponse = () => {
           <div className="flex flex-wrap justify-between items-center mb-4">
             <h2 className="text-orange-500 font-bold text-2xl sm:text-3xl">Your Story</h2>
             <div className="text-right w-full sm:w-auto mt-2 sm:mt-0">
-              <AvatarSwapper />
+              <AvatarSwapper handleVoiceChange={handleVoiceChange} />
             </div>
           </div>
 
