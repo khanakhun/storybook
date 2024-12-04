@@ -96,7 +96,7 @@ const StoryResponse = () => {
   };
 
   return (
-    <div className="relative ">
+    <div className="relative h-screen  ">
       <div className="flex flex-col items-center justify-center h-full px-4 py-8">
         <div className="relative bg-white shadow-lg rounded-lg p-6 border-4 border-orange-500 max-w-4xl w-full text-center">
           {/* Images Positioning */}
