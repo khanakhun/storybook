@@ -45,6 +45,7 @@ const page = () => {
       {story && <StoryResponse />}
       {/* section 4 */}
       <PreStories />
+      <div className="h-[100px]" />
     </div>
   );
 };
