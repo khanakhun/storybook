@@ -1,9 +1,9 @@
 import axios from "axios";
 
 // Generic function to handle API requests
-export const generateStory = async (prompt: string, language: string): Promise<string> => {
+export const generateStory = async (prompt: string): Promise<string> => {
   try {
-    const res = await axios.post("/api/get-story", { prompt, language });
+    const res = await axios.post("/api/get-story", { prompt });
 
     if (res.status === 200 && res.data.message) {
       return res.data.message;
@@ -16,7 +16,7 @@ export const generateStory = async (prompt: string, language: string): Promise<s
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const generateSpeech = async (input: string, voice: string): Promise<any> => {
+export const generateSpeech = async (input: string | null, voice: string): Promise<any> => {
   try {
     const res = await axios.post("/api/speech-story", { input, voice });
 

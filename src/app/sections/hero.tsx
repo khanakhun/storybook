@@ -5,36 +5,29 @@ import "react-toastify/dist/ReactToastify.css";
 import { generateStory } from "../services/api";
 import HeroText from "../global-components/HeroText";
 import InputBar from "../global-components/InputBar";
-import LoaderWrapper from "../global-components/LoaderWrapper";
-import StoryDisplay from "../global-components/StoryDisplay";
-import MainCarousel from "../global-components/MainCarousel";
-import { useLanguageStore } from "@/lib/store";
+import { useAppStore } from "@/lib/store";
+import Link from "next/link";
 
 const Hero = () => {
-  const { language } = useLanguageStore(); // Zustand hooks
+  const { setStory, setLoading, isLoading } = useAppStore();
   const [text, setText] = useState("");
-  const [response, setResponse] = useState("");
-  const [loading, setLoading] = useState(false);
 
   const handleChangeText = (event: React.ChangeEvent<HTMLInputElement>) => {
     setText(event.target.value);
   };
-
   const handleGenerateStory = useCallback(async () => {
     if (!text.trim()) {
       toast("Please enter a prompt!");
       return;
     }
-
-    setResponse("");
+    setStory("");
     setLoading(true);
-
     try {
-      const story = await generateStory(text, language);
-      setResponse(story);
+      const story = await generateStory(text);
+      setStory(story);
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
-      setResponse(error.message);
+      setStory(error.message);
     } finally {
       setLoading(false);
     }
@@ -47,15 +40,21 @@ const Hero = () => {
   };
 
   return (
-    <div className="py-20 bg-gradient-to-br">
+    <div className="">
       <ToastContainer position="top-center" autoClose={5000} />
       <HeroText />
-      <InputBar value={text} onChange={handleChangeText} onKeyDown={handleKeyPress} onSearch={handleGenerateStory} loading={loading} />
-      <div className="px-20 mt-20">
-        {loading && <LoaderWrapper />}
-        {response && !loading && <StoryDisplay story={response} />}
-        {!response && !loading && <MainCarousel />}
+      <div className="flex gap-3 md:flex-row flex-col justify-center items-center p-2">
+        <InputBar value={text} onChange={handleChangeText} onKeyDown={handleKeyPress} onSearch={handleGenerateStory} loading={isLoading} />
+        <Link href={"/#storyloader"}>
+          <button
+            onClick={handleGenerateStory}
+            className="bg-[#FF7F3E] text-white font-bold px-6 py-2 rounded-lg shadow-md hover:bg-green-500 transition"
+          >
+            Create
+          </button>
+        </Link>
       </div>
+      <div className="px-20 mt-20"></div>
     </div>
   );
 };
