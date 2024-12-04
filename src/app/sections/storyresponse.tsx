@@ -12,7 +12,10 @@ import { generateSpeech } from "../services/api";
 import AvatarSwapper from "../global-components/AvatarSwapper";
 
 const StoryResponse = () => {
-  const { story } = useAppStore();
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const { story, language }: any = useAppStore();
+  const parseStory = JSON.parse(story);
+  const choosedLngStory = language === "en" ? parseStory.english : parseStory.hebrew;
   const [isLoading, setIsLoading] = useState(false);
   const [audioUrl, setAudioUrl] = useState<string | null>(null);
   const [voice, setVoice] = useState("alloy");
@@ -28,7 +31,7 @@ const StoryResponse = () => {
     };
   }, [audioUrl]);
 
-  const formattedStory = formatStory(story || "");
+  const formattedStory = formatStory(choosedLngStory || "");
 
   const handleSpeakerClick = async () => {
     setIsLoading(true);
@@ -36,7 +39,7 @@ const StoryResponse = () => {
     setAudioUrl(null);
 
     try {
-      const response = await generateSpeech(story, voice);
+      const response = await generateSpeech(choosedLngStory, voice);
       if (!response.audioUrl) {
         throw new Error("Audio URL not found in the API response.");
       }

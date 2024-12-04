@@ -31,7 +31,7 @@ const page = () => {
       {/* section 1 */}
       <div>
         <Navbar />
-        <div className="flex justify-center items-center h-screen">
+        <div className="flex justify-start items-center flex-col h-screen">
           <Hero />
         </div>
       </div>
@@ -45,7 +45,7 @@ const page = () => {
       {story && <StoryResponse />}
       {/* section 4 */}
       <PreStories />
-      <div className="h-[100px]" />
+      {/* <div className="h-[100px]" /> */}
     </div>
   );
 };

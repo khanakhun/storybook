@@ -9,7 +9,7 @@ import { useAppStore } from "@/lib/store";
 import Link from "next/link";
 
 const Hero = () => {
-  const { language, setStory, setLoading, isLoading } = useAppStore();
+  const { setStory, setLoading, isLoading } = useAppStore();
   const [text, setText] = useState("");
 
   const handleChangeText = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -23,7 +23,7 @@ const Hero = () => {
     setStory("");
     setLoading(true);
     try {
-      const story = await generateStory(text, language);
+      const story = await generateStory(text);
       setStory(story);
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
@@ -43,7 +43,7 @@ const Hero = () => {
     <div className="">
       <ToastContainer position="top-center" autoClose={5000} />
       <HeroText />
-      <div className="flex gap-3 mt-20 md:flex-row flex-col justify-center items-center p-2">
+      <div className="flex gap-3 md:flex-row flex-col justify-center items-center p-2">
         <InputBar value={text} onChange={handleChangeText} onKeyDown={handleKeyPress} onSearch={handleGenerateStory} loading={isLoading} />
         <Link href={"/#storyloader"}>
           <button

@@ -7,85 +7,93 @@ import sashacat from "../app/assets/static-stories/sasha-and-cat.png.svg";
 import ali from "../app/assets/static-stories/ali.svg";
 
 interface Type {
-  title: string;
-  description: string;
+  title: {
+    en: string;
+    he: string;
+  };
+  description: {
+    en: string;
+    he: string;
+  };
   image?: string;
 }
 
 export const staticStories: Type[] = [
   {
-    title: "The Curious Fox and the Hidden Forest",
-    description: "A young fox stumbles upon a secret forest filled with magical creatures and ancient secrets.",
+    title: {
+      en: "The Curious Fox and the Hidden Forest",
+      he: "השועל הסקרן והיער הנסתר",
+    },
+    description: {
+      en: "A young fox stumbles upon a secret forest filled with magical creatures and ancient secrets.",
+      he: "שועל צעיר מגלה יער נסתר מלא ביצורים קסומים וסודות עתיקים.",
+    },
     image: fox,
   },
   {
-    title: "Luna and the Moonlight Adventure",
-    description: "Luna, a brave little girl, discovers a hidden portal that only opens under the moonlight, leading to a world of wonder.",
+    title: {
+      en: "Luna and the Moonlight Adventure",
+      he: "לונה והרפתקת אור הירח",
+    },
+    description: {
+      en: "Luna, a brave little girl, discovers a hidden portal that only opens under the moonlight, leading to a world of wonder.",
+      he: "לונה, ילדה אמיצה, מגלה שער נסתר שנפתח רק באור הירח, המוביל לעולם של פלאים.",
+    },
     image: luna,
   },
   {
-    title: "The Little Robot’s Big Dream",
-    description: "A small robot with a kind heart dreams of becoming a hero in a land of humans and machines.",
+    title: {
+      en: "The Little Robot’s Big Dream",
+      he: "החלום הגדול של הרובוט הקטן",
+    },
+    description: {
+      en: "A small robot with a kind heart dreams of becoming a hero in a land of humans and machines.",
+      he: "רובוט קטן עם לב טוב חולם להפוך לגיבור בארץ של בני אדם ומכונות.",
+    },
     image: lilrobot,
   },
   {
-    title: "The Pirate’s Lost Treasure Map",
-    description: "Join Max and his parrot Polly as they embark on a thrilling quest to find a pirate's long-lost treasure.",
+    title: {
+      en: "The Pirate’s Lost Treasure Map",
+      he: "מפת האוצר האבודה של הפיראט",
+    },
+    description: {
+      en: "Join Max and his parrot Polly as they embark on a thrilling quest to find a pirate's long-lost treasure.",
+      he: "הצטרפו למקס והתוכי שלו, פולי, למסע מרתק למצוא את האוצר האבוד של הפיראט.",
+    },
     image: lilpirate,
   },
   {
-    title: "The Rainbow Dragon’s Secret",
-    description: "In a colorful kingdom, a young boy befriends a rare rainbow dragon with a mysterious secret.",
+    title: {
+      en: "The Rainbow Dragon’s Secret",
+      he: "הסוד של דרקון הקשת",
+    },
+    description: {
+      en: "In a colorful kingdom, a young boy befriends a rare rainbow dragon with a mysterious secret.",
+      he: "בממלכה צבעונית, ילד צעיר מתיידד עם דרקון קשת נדיר בעל סוד מסתורי.",
+    },
     image: dragon,
   },
   {
-    title: "Sasha and the Talking fox",
-    description: "Sasha meets a magical talking fox who takes her on a journey through enchanted lands.",
+    title: {
+      en: "Sasha and the Talking Fox",
+      he: "סשה והשועל המדבר",
+    },
+    description: {
+      en: "Sasha meets a magical talking fox who takes her on a journey through enchanted lands.",
+      he: "סשה פוגשת שועל קסום שמדבר ולוקח אותה למסע בארץ הקסם.",
+    },
     image: sashacat,
   },
   {
-    title: "The Time-Traveling Treehouse",
-    description: "A group of friends discovers their treehouse can travel through time, leading to exciting adventures.",
+    title: {
+      en: "The Time-Traveling Treehouse",
+      he: "בית העץ שנוסע בזמן",
+    },
+    description: {
+      en: "A group of friends discovers their treehouse can travel through time, leading to exciting adventures.",
+      he: "קבוצת חברים מגלה שבית העץ שלהם יכול לנסוע בזמן, מה שמוביל להרפתקאות מרתקות.",
+    },
     image: ali,
-  },
-  {
-    title: "The Magical Paintbrush",
-    description: "Emma finds a paintbrush that brings her drawings to life, but not everything goes as planned.",
-    image: fox,
-  },
-  {
-    title: "Ali and the Kingdom of Stars",
-    description: "Ali is whisked away to a kingdom among the stars, where he must help the Star King save the night sky.",
-    image: fox,
-  },
-  {
-    title: "The Brave Little Penguin",
-    description: "Follow Pippin, a tiny penguin, as he faces challenges to save his icy home.",
-    image: fox,
-  },
-  {
-    title: "The Secret Library Beneath the School",
-    description: "A group of curious kids discovers a hidden library under their school, filled with magical books.",
-    image: fox,
-  },
-  {
-    title: "The Golden Key and the Hidden Door",
-    description: "A mysterious golden key leads Lily to an extraordinary door with surprises behind it.",
-    image: fox,
-  },
-  {
-    title: "The Friendly Monster from Monster Mountain",
-    description: "Timmy befriends a gentle monster who needs help to protect his mountain from danger.",
-    image: fox,
-  },
-  {
-    title: "Ella and the Whispering Woods",
-    description: "Ella enters a magical forest where trees whisper secrets and guide her on an unexpected adventure.",
-    image: fox,
-  },
-  {
-    title: "The Cloud foxcher’s Adventure",
-    description: "A boy named Theo dreams of foxching clouds and discovers a fantastical world above the sky.",
-    image: fox,
   },
 ];

@@ -18,8 +18,7 @@ const PreStories = () => {
         </p>
         <div className="flex justify-center flex-col items-center">
           <KidCarousel slice={0} aria-label="Choose a story adventure card" />
-          <div style={{ height: 20 }} />
-          <KidCarousel slice={7} aria-label="Choose another story adventure card" />
+          {/* <KidCarousel slice={7} aria-label="Choose another story adventure card" /> */}
         </div>
       </div>
     </div>
