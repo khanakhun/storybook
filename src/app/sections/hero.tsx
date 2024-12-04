@@ -48,7 +48,7 @@ const Hero = () => {
         <Link href={"/#storyloader"}>
           <button
             onClick={handleGenerateStory}
-            className="bg-[#3CFF57] text-black font-bold px-6 py-2 rounded-lg shadow-md hover:bg-green-500 transition"
+            className="bg-[#FF7F3E] text-white font-bold px-6 py-2 rounded-lg shadow-md hover:bg-green-500 transition"
           >
             Create
           </button>

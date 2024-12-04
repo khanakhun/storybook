@@ -7,7 +7,13 @@
 }
 
 body {
+  background: #8a2387;
+  background: -webkit-linear-gradient(to right, #f27121, #e94057, #8a2387);
+  background: linear-gradient(to right, #f27121, #e94057, #8a2387);
   font-family: var(--font-shantell-sans), sans-serif;
+}
+
+body {
 }
 h1 {
   font-family: var(--font-shantell-sans), sans-serif;

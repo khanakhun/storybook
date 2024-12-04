@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from "react";
-import bg from "../assets/svg/backgorund.svg";
 import leftCloud from "../assets/svg/leftc.svg";
 import rightCloud from "../assets/svg/rightc.svg";
 import leftTree from "../assets/svg/leftt.svg";
@@ -10,22 +9,13 @@ import Image from "next/image";
 import { useAppStore } from "@/lib/store";
 import { formatStory } from "@/lib/formattext";
 import { generateSpeech } from "../services/api";
-
-const voices = [
-  { value: "alloy", label: "Alloy" },
-  { value: "echo", label: "Echo" },
-  { value: "fable", label: "Fable" },
-  { value: "onyx", label: "Onyx" },
-  { value: "nova", label: "Nova" },
-  { value: "shimmer", label: "Shimmer" },
-];
+import AvatarSwapper from "../global-components/AvatarSwapper";
 
 const StoryResponse = () => {
   const { story } = useAppStore();
-
   const [isLoading, setIsLoading] = useState(false);
   const [audioUrl, setAudioUrl] = useState<string | null>(null);
-  const [voice, setVoice] = useState(voices[0].value);
+  const [voice, setVoice] = useState("Alloy");
   const [isPlaying, setIsPlaying] = useState(false);
   const [volume, setVolume] = useState(1); // Default volume at max
   const [error, setError] = useState<string | null>(null);
@@ -106,7 +96,7 @@ const StoryResponse = () => {
   };
 
   return (
-    <div className="relative bg-cover bg-center" style={{ backgroundImage: `url(${bg.src})` }}>
+    <div className="relative ">
       <div className="flex flex-col items-center justify-center h-full px-4 py-8">
         <div className="relative bg-white shadow-lg rounded-lg p-6 border-4 border-orange-500 max-w-4xl w-full text-center">
           {/* Images Positioning */}
@@ -127,21 +117,7 @@ const StoryResponse = () => {
           <div className="flex flex-wrap justify-between items-center mb-4">
             <h2 className="text-orange-500 font-bold text-2xl sm:text-3xl">Your Story</h2>
             <div className="text-right w-full sm:w-auto mt-2 sm:mt-0">
-              <label htmlFor="voice-select" className="text-black font-medium mr-2 block sm:inline">
-                Select Voice:
-              </label>
-              <select
-                id="voice-select"
-                value={voice}
-                onChange={handleVoiceChange}
-                className="p-2 rounded bg-[#FF7F3E] text-white w-full sm:w-auto mt-2 sm:mt-0"
-              >
-                {voices.map((v) => (
-                  <option key={v.value} value={v.value}>
-                    {v.label}
-                  </option>
-                ))}
-              </select>
+              <AvatarSwapper />
             </div>
           </div>
 

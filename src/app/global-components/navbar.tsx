@@ -49,7 +49,7 @@ const Header: React.FC = () => {
         </button>
 
         {/* Logo */}
-        <ul className="hidden md:flex items-center gap-6 text-gray-800 font-bold">
+        <ul className="hidden md:flex items-center gap-6 text-white font-bold">
           {menuItems.map((item) => (
             <Link href={`#${item}`} key={item}>
               <li key={item} className="hover:text-orange-500 cursor-pointer">

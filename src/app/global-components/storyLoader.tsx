@@ -9,17 +9,17 @@ import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 const StoryLoader = () => {
   return (
     <div id="storyloader">
-      <div className="flex justify-between items-center md:flex-row flex-col">
-        <div className="md:flex hidden">
+      <div className="flex  h-screen justify-center items-center md:flex-row flex-col">
+        {/* <div className="md:flex hidden">
           <Image src={leftcarton} alt="Right Cloud" width={339} height={702} className="justify-self-end " />
-        </div>
+        </div> */}
         <div className="flex justify-center items-center flex-col ">
           <DotLottieReact className="w-48 h-48" src={"/chicken.lottie"} loop autoplay />
-          <p className="font-bold mt-10 animate-bounce text-center">Creating a magical tale just for you please wait... 🎉</p>
+          <p className="font-bold mt-10 animate-bounce text-center text-white">Creating a magical tale just for you please wait... 🎉</p>
         </div>
-        <div>
+        {/* <div>
           <Image src={rightcartoon} alt="Left Cloud" width={339} height={702} className="justify-self-start" />
-        </div>
+        </div> */}
       </div>
     </div>
   );

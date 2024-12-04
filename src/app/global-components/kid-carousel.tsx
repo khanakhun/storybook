@@ -3,13 +3,17 @@
 import * as React from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
-import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 import { generateStory } from "../services/api";
 import { useAppStore } from "@/lib/store";
 import Link from "next/link";
+import { staticStories } from "@/lib/static-data";
+import Image from "next/image";
 
-export function KidCarousel() {
-  const lottieAnimations = ["/chicken.lottie", "/panda.lottie", "loader.lottie", "/lion.lottie", "/fish.lottie"];
+export const KidCarousel = ({ slice }: { slice: number }) => {
+  const storiesToShow =
+    slice === 0
+      ? staticStories.slice(0, 7) // First 7 stories
+      : staticStories.slice(7); // Remaining stories
   const { language, setStory, setLoading } = useAppStore();
 
   const handleGenerateStory = async (text: string) => {
@@ -26,53 +30,38 @@ export function KidCarousel() {
     }
   };
 
-  const getStoryText = (key: string) => {
-    switch (key) {
-      case "/chicken.lottie":
-        return "a magical chicken story.";
-      case "/panda.lottie":
-        return "a heartwarming panda tale.";
-      case "loader.lottie":
-        return "adventurous world";
-      case "/lion.lottie":
-        return "epic story about a brave lion.";
-      case "/fish.lottie":
-        return "fascinating underwater story about a fish.";
-      default:
-        return "wonderful story.";
-    }
-  };
-
   return (
-    <div className="w-full bg-blue-400 py-10 ">
-      <h2 className="text-center text-white text-2xl md:text-4xl font-bold mb-6">Discover Magical Stories</h2>
-      <div className="flex justify-center p-20">
-        <Carousel className="w-full max-w-2xl">
-          <CarouselContent className="-ml-1">
-            {lottieAnimations.map((key, index) => (
-              <CarouselItem key={index} className="pl-1 md:basis-1/2 lg:basis-1/3">
-                <div className="p-1">
-                  <Card>
-                    <CardContent className="flex aspect-square items-center justify-center p-6">
-                      <DotLottieReact className="w-full h-full" src={key} loop autoplay />
-                    </CardContent>
-                    <Link href={"/#storyloader"}>
-                      <button
-                        onClick={() => handleGenerateStory(getStoryText(key))}
-                        className="mt-4 px-4 py-2 sm:px-6 sm:py-2 bg-[#FF7F3E] hover:bg-[#FF7F3E] text-white font-bold rounded-lg shadow-md w-full"
-                      >
-                        Listen Now
-                      </button>
-                    </Link>
-                  </Card>
-                </div>
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-          <CarouselPrevious />
-          <CarouselNext />
-        </Carousel>
-      </div>
-    </div>
+    <Carousel className="w-full max-w-3xl">
+      <CarouselContent className="-ml-1">
+        {storiesToShow.map((key, index) => {
+          console.log(key.image, "key");
+          return (
+            <CarouselItem key={index} className="pl-1 md:basis-1/2 lg:basis-1/3">
+              <Link href={"/#storyloader"} onClick={() => handleGenerateStory(setStory(key.description))}>
+                <Card>
+                  <CardContent className="flex justify-center items-center p-1">
+                    <Image src={key.image} alt={key.title} width={300} height={300} className="rounded-md h-[240px]" />
+                  </CardContent>
+                  <CarouselItem className=" text-center h-[50px]">{key.title}</CarouselItem>
+                </Card>
+              </Link>
+            </CarouselItem>
+          );
+        })}
+      </CarouselContent>
+      <CarouselPrevious />
+      <CarouselNext />
+    </Carousel>
   );
+};
+
+{
+  /* <Link href={"/#storyloader"}>
+                  <button
+                    onClick={() => handleGenerateStory(setStory(key.description))}
+                    className="mt-4 relative bottom-1 px-4 py-2 sm:px-6 sm:py-2 bg-[#FF7F3E] hover:bg-[#FF7F3E] text-white font-bold rounded-lg shadow-md w-full"
+                  >
+                    Listen Now
+                  </button>
+                </Link> */
 }
