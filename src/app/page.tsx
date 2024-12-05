@@ -28,24 +28,23 @@ const page = () => {
   return (
     <div>
       <ToastContainer position="top-center" autoClose={5000} />
-      {/* section 1 */}
-      <div>
-        <Navbar />
-        <div className="flex justify-start items-center flex-col h-screen">
-          <Hero />
-        </div>
+      <Navbar />
+      <div className="h-screen w-full flex justify-center items-center">
+        <Hero />
       </div>
-      {/* section 2 */}
       {isLoading && (
-        <div>
+        <div id="storyloader" className="h-screen w-full flex justify-center items-center">
           <StoryLoader />
         </div>
       )}
-      {/* section 3 */}
-      {story && <StoryResponse />}
-      {/* section 4 */}
-      <PreStories />
-      {/* <div className="h-[100px]" /> */}
+      {story && (
+        <div className="h-screen w-full flex justify-center items-center">
+          <StoryResponse />
+        </div>
+      )}
+      <div id="Listen" className="h-screen w-full">
+        <PreStories />
+      </div>
     </div>
   );
 };

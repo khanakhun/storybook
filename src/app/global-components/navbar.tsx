@@ -52,7 +52,7 @@ const Header: React.FC = () => {
         <ul className="hidden md:flex items-center gap-6 text-white font-bold">
           {menuItems.map((item) => (
             <Link href={`#${item}`} key={item}>
-              <li key={item} className="hover:text-orange-500 cursor-pointer">
+              <li key={item} className="hover:text-blue-500 cursor-pointer">
                 {item}
               </li>
             </Link>
@@ -112,7 +112,7 @@ const Header: React.FC = () => {
           <ul className="flex flex-col items-start gap-4 p-4">
             {menuItems.map((item) => (
               <Link href={`#${item}`} key={item}>
-                <li key={item} className="hover:text-orange-500 cursor-pointer">
+                <li key={item} className="hover:text-blue-500 cursor-pointer">
                   {item}
                 </li>
               </Link>
