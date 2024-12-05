@@ -6,8 +6,8 @@ const PreStories = () => {
   const { language } = useAppStore(); // Zustand hooks
 
   return (
-    <div id="Listen">
-      <div className="w-full h-screen py-10 mb-10">
+    <div>
+      <div className="">
         <h2 className="text-center text-white text-2xl md:text-4xl font-bold mb-10">
           {language === "en" ? "Choose Your Adventure 🌟✨" : "בחרו את ההרפתקה שלכם 🌟✨"}
         </h2>
@@ -17,7 +17,9 @@ const PreStories = () => {
             : "בחרו כרטיס כדי לחשוף סיפור קסום רק בשבילכם! כל כרטיס מחביא הרפתקה ייחודית—לחצו כדי לגלות את הכיף וההתרגשות שמחכים לכם. שיהיה בכיף!"}
         </p>
         <div className="flex justify-center flex-col items-center">
+          <div className="h-20" />
           <KidCarousel />
+          <div className="h-10" />
         </div>
       </div>
     </div>

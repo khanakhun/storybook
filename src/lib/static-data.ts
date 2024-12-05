@@ -5,6 +5,14 @@ import lilpirate from "../app/assets/static-stories/lilpirate.svg";
 import dragon from "../app/assets/static-stories/dragob.svg";
 import sashacat from "../app/assets/static-stories/sasha-and-cat.png.svg";
 import ali from "../app/assets/static-stories/ali.svg";
+import magicalPaintImg from "../app/assets/static-stories/magical paint.webp";
+import alistar from "../app/assets/static-stories/alistar.webp";
+import lilpeng from "../app/assets/static-stories/lilpeng.webp";
+// import seclab from "../app/assets/static-stories/seclab.webp";
+// import key from "../app/assets/static-stories/key.webp";
+// import friendmonster from "../app/assets/static-stories/friendmonster.webp";
+import ella from "../app/assets/static-stories/Ella.webp";
+import cloudcatcher from "../app/assets/static-stories/cloudcatcher.webp";
 
 interface Type {
   title: {
@@ -95,5 +103,93 @@ export const staticStories: Type[] = [
       he: "קבוצת חברים מגלה שבית העץ שלהם יכול לנסוע בזמן, מה שמוביל להרפתקאות מרתקות.",
     },
     image: ali,
+  },
+  {
+    title: {
+      en: "The Magical Paintbrush",
+      he: "המברשת הקסומה",
+    },
+    description: {
+      en: "Emma finds a paintbrush that brings her drawings to life, but not everything goes as planned.",
+      he: "אמה מוצאת מברשת ציור שמחיה את הציורים שלה, אבל לא הכול הולך כמתוכנן.",
+    },
+    image: magicalPaintImg,
+  },
+  {
+    title: {
+      en: "Ali and the Kingdom of Stars",
+      he: "עלי וממלכת הכוכבים",
+    },
+    description: {
+      en: "Ali is whisked away to a kingdom among the stars, where he must help the Star King save the night sky.",
+      he: "עלי נלקח לממלכה בין הכוכבים, שם עליו לעזור למלך הכוכבים להציל את שמי הלילה.",
+    },
+    image: alistar,
+  },
+  {
+    title: {
+      en: "The Brave Little Penguin",
+      he: "הפינגווין הקטן והאמיץ",
+    },
+    description: {
+      en: "Follow Pippin, a tiny penguin, as he faces challenges to save his icy home.",
+      he: "עקבו אחרי פיפין, פינגווין קטן ואמיץ, כשהוא מתמודד עם אתגרים להצלת ביתו הקרחוני.",
+    },
+    image: lilpeng,
+  },
+  {
+    title: {
+      en: "The Secret Library Beneath the School",
+      he: "הספרייה הסודית מתחת לבית הספר",
+    },
+    description: {
+      en: "A group of curious kids discovers a hidden library under their school, filled with magical books.",
+      he: "קבוצת ילדים סקרנים מגלה ספרייה נסתרת מתחת לבית הספר, מלאה בספרים קסומים.",
+    },
+    image: lilpeng,
+  },
+  {
+    title: {
+      en: "The Golden Key and the Hidden Door",
+      he: "המפתח הזהוב והדלת הנסתרת",
+    },
+    description: {
+      en: "A mysterious golden key leads Lily to an extraordinary door with surprises behind it.",
+      he: "מפתח זהוב מסתורי מוביל את לילי לדלת יוצאת דופן עם הפתעות מאחוריה.",
+    },
+    image: lilpeng,
+  },
+  {
+    title: {
+      en: "The Friendly Monster from Monster Mountain",
+      he: "המפלצת הידידותית מהר המפלצות",
+    },
+    description: {
+      en: "Timmy befriends a gentle monster who needs help to protect his mountain from danger.",
+      he: "טים מתחבר למפלצת עדינה שזקוקה לעזרה כדי להגן על ההר שלה מפני סכנה.",
+    },
+    image: lilpeng,
+  },
+  {
+    title: {
+      en: "Ella and the Whispering Woods",
+      he: "אלה והיער הלוחש",
+    },
+    description: {
+      en: "Ella enters a magical forest where trees whisper secrets and guide her on an unexpected adventure.",
+      he: "אלה נכנסת ליער קסום שבו העצים לוחשים סודות ומנחים אותה בהרפתקה בלתי צפויה.",
+    },
+    image: ella,
+  },
+  {
+    title: {
+      en: "The Cloud Catcher’s Adventure",
+      he: "הרפתקת לוכד העננים",
+    },
+    description: {
+      en: "A boy named Theo dreams of catching clouds and discovers a fantastical world above the sky.",
+      he: "תיאו, ילד שחולם לתפוס עננים, מגלה עולם פנטסטי מעל השמיים.",
+    },
+    image: cloudcatcher,
   },
 ];

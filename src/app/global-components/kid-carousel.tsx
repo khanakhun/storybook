@@ -25,20 +25,20 @@ export const KidCarousel = () => {
       setLoading(false);
     }
   };
-
   return (
-    <Carousel className=" lg:w-[70%] w-[60%]">
+    <Carousel className=" w-[60%] ">
       <CarouselContent className="-ml-1">
         {staticStories.map((key: any, index: any) => {
           return (
-            <CarouselItem key={index} className="pl-1 md:basis-1/2 lg:basis-1/3">
+            <CarouselItem key={index} className="pl-4 pr-4 md:basis-1/2 lg:basis-1/3  ">
               <Link href={"/#storyloader"} onClick={() => handleGenerateStory(key.description[language])}>
                 <Card>
-                  <CardContent className="flex justify-center items-center p-1">
-                    <Image src={key.image.src} alt={key.title} width={300} height={300} className="rounded-md lg:h-[340px] h-full w-full" />
+                  <CardContent className="flex justify-center items-center p-1 ">
+                    <Image src={key.image.src} alt={key.title} width={300} height={300} className="rounded-md  h-full w-full " />
                   </CardContent>
 
-                  <CarouselItem className=" text-center h-[50px]">{key.title[language]}</CarouselItem>
+                  <CarouselItem className=" text-start text-red-500 h-[50px]">{key.title[language]}</CarouselItem>
+                  <CarouselItem className=" text-start text-sm h-[100px]">{key.description[language]}</CarouselItem>
                 </Card>
               </Link>
             </CarouselItem>
