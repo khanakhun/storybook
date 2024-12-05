@@ -7,7 +7,7 @@ const openai = new OpenAI();
 export async function POST(request: Request) {
   try {
     // Parse the request body to extract the prompt and language
-    const { prompt } = await request.json();
+    const { prompt , language } = await request.json();
 
     // Validate the input prompt
     if (!prompt) {
@@ -18,23 +18,27 @@ export async function POST(request: Request) {
     if (!process.env.OPENAI_API_KEY) {
       return NextResponse.json({ message: "API key is missing!" }, { status: 500 });
     }
-    const prompter = `Create a fun and magical short story of 200 words about ${prompt} in both English and Hebrew language. 
-    Please return the story in JSON format with two fields:
-    - "english": The story in English.
-    - "hebrew": The story translated into Hebrew.`;
+    // const prompter = `Create a fun and magical short story of 200 words about ${prompt} in both English and Hebrew language. 
+    // Please return the story in JSON format with two fields:
+    // - "english": The story in English.
+    // - "hebrew": The story translated into Hebrew.`;
+    const storyPrompt =  `
+      Write an engaging story for children in  ${language === "en" ? "English" : "Hebrew"} language about ${prompt}. Keep the story moderately long (around 50-80 words) with simple vocabulary suitable for children.
+       Ensure the story has a clear beginning, middle, and end, with a positive moral or lesson.
+    `
 
     const completion = await openai.chat.completions.create({
-      model: "gpt-4",
+      model: "gpt-4o",
       messages: [
-        { role: "system", content: "You are a friendly storyteller." },
+        { role: "system", content: "You are a friendly storyteller for children, use easy words for children ." },
         {
           role: "user",
-          content: prompter,
+          content: storyPrompt,
         },
       ],
-      temperature: 0.7, // Adjust randomness of the story
+      temperature: 0.5, // Adjust randomness of the story
     });
-
+    console.log("completion", completion.choices[0].message.content)
     // Extract the message from the OpenAI response
     const message = completion.choices[0]?.message?.content ?? "Sorry, I couldn't generate a story. Please try again!";
 

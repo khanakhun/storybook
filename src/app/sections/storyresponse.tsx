@@ -14,9 +14,8 @@ import Typewriter from "../global-components/TypeWritter";
 
 const StoryResponse = () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const { story, language }: any = useAppStore();
-  const parseStory = JSON.parse(story);
-  const choosedLngStory = language === "en" ? parseStory.english : parseStory.hebrew;
+  const { story , language }: any = useAppStore();
+
   const [isLoading, setIsLoading] = useState(false);
   const [audioUrl, setAudioUrl] = useState<string | null>(null);
   const [voice, setVoice] = useState("alloy");
@@ -32,15 +31,14 @@ const StoryResponse = () => {
     };
   }, [audioUrl]);
 
-  const formattedStory = formatStory(choosedLngStory || "");
-
+  const formattedStory = formatStory(story || "");
   const handleSpeakerClick = async () => {
     setIsLoading(true);
     setError(null);
     setAudioUrl(null);
 
     try {
-      const response = await generateSpeech(choosedLngStory, voice);
+      const response = await generateSpeech(story, voice);
       if (!response.audioUrl) {
         throw new Error("Audio URL not found in the API response.");
       }
@@ -118,7 +116,7 @@ const StoryResponse = () => {
 
           {/* Title and Voice Selector */}
           <div className="flex flex-wrap justify-between items-center mb-4">
-            <h2 className="text-orange-500 font-bold text-2xl sm:text-3xl">Your Story</h2>
+            <h2 className="text-orange-500 font-bold text-2xl sm:text-3xl">{ language == "en" ? "Your Special Story" : "סיפור מיוחד שלך"}</h2>
             <div className="text-right w-full sm:w-auto mt-2 sm:mt-0">
               <AvatarSwapper handleVoiceChange={handleVoiceChange} />
             </div>
@@ -138,7 +136,8 @@ const StoryResponse = () => {
               className="bg-orange-500 text-white font-bold px-4 py-2 rounded shadow-md w-full sm:w-auto mb-4 sm:mb-0"
               disabled={isLoading || !story || isPlaying}
             >
-              {isLoading ? "Generating..." : "Generate Speech"}
+              {isLoading ? (language == "en" ? "Story Time Begins!" : "זמן סיפור מתחיל!") : (language == "en" ? "Play My Story" : "נגן את הסיפור שלי")}
+             
             </button>
 
             {audioUrl && (

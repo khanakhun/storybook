@@ -8,7 +8,7 @@ const PreStories = () => {
   return (
     <div>
       <div className="">
-        <h2 className="text-center text-white text-2xl md:text-4xl font-bold mb-10">
+        <h2 className="text-center pt-36 text-white text-2xl md:text-4xl font-bold mb-10">
           {language === "en" ? "Choose Your Adventure 🌟✨" : "בחרו את ההרפתקה שלכם 🌟✨"}
         </h2>
         <p className="text-white text-xl text-center mb-8 mt-10 font-bold pl-8 pr-8 lg:pl-48 lg:pr-48">

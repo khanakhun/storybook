@@ -1,18 +1,18 @@
 import fox from "../app/assets/static-stories/fox.svg";
 import luna from "../app/assets/static-stories/luna.svg";
 import lilrobot from "../app/assets/static-stories/lilrobot.svg";
-import lilpirate from "../app/assets/static-stories/lilpirate.svg";
+import lilpirate from "../app/assets/static-stories/pirate-lost-treasure.webp";
 import dragon from "../app/assets/static-stories/dragob.svg";
 import sashacat from "../app/assets/static-stories/sasha-and-cat.png.svg";
 import ali from "../app/assets/static-stories/ali.svg";
-import magicalPaintImg from "../app/assets/static-stories/magical paint.webp";
+import magicalPaintImg from "../app/assets/static-stories/magical-paint.webp";
 import alistar from "../app/assets/static-stories/alistar.webp";
 import lilpeng from "../app/assets/static-stories/lilpeng.webp";
-// import seclab from "../app/assets/static-stories/seclab.webp";
-// import key from "../app/assets/static-stories/key.webp";
-// import friendmonster from "../app/assets/static-stories/friendmonster.webp";
+import seclab from "../app/assets/static-stories/secret-library.webp";
+import key from "../app/assets/static-stories/golden-key.webp";
+import friendmonster from "../app/assets/static-stories/gentle-monster.webp";
 import ella from "../app/assets/static-stories/Ella.webp";
-import cloudcatcher from "../app/assets/static-stories/cloudcatcher.webp";
+import cloudcatcher from "../app/assets/static-stories/the-cloud-catchers-adventure.webp";
 
 interface Type {
   title: {
@@ -146,7 +146,7 @@ export const staticStories: Type[] = [
       en: "A group of curious kids discovers a hidden library under their school, filled with magical books.",
       he: "קבוצת ילדים סקרנים מגלה ספרייה נסתרת מתחת לבית הספר, מלאה בספרים קסומים.",
     },
-    image: lilpeng,
+    image: seclab,
   },
   {
     title: {
@@ -157,7 +157,7 @@ export const staticStories: Type[] = [
       en: "A mysterious golden key leads Lily to an extraordinary door with surprises behind it.",
       he: "מפתח זהוב מסתורי מוביל את לילי לדלת יוצאת דופן עם הפתעות מאחוריה.",
     },
-    image: lilpeng,
+    image: key,
   },
   {
     title: {
@@ -168,7 +168,7 @@ export const staticStories: Type[] = [
       en: "Timmy befriends a gentle monster who needs help to protect his mountain from danger.",
       he: "טים מתחבר למפלצת עדינה שזקוקה לעזרה כדי להגן על ההר שלה מפני סכנה.",
     },
-    image: lilpeng,
+    image: friendmonster,
   },
   {
     title: {

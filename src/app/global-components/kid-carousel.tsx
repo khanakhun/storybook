@@ -17,7 +17,7 @@ export const KidCarousel = () => {
     setStory("");
     setLoading(true);
     try {
-      const story = await generateStory(text);
+      const story = await generateStory(text , language);
       setStory(story);
     } catch (error: any) {
       setStory(error.message);
@@ -31,7 +31,7 @@ export const KidCarousel = () => {
         {staticStories.map((key: any, index: any) => {
           return (
             <CarouselItem key={index} className="pl-4 pr-4 md:basis-1/2 lg:basis-1/3  ">
-              <Link href={"/#storyloader"} onClick={() => handleGenerateStory(key.description[language])}>
+              <Link href={"/#storyloader"} onClick={() => handleGenerateStory(`${key.title[language]} ${key.description[language]}`)}>
                 <Card>
                   <CardContent className="flex justify-center items-center p-1 ">
                     <Image src={key.image.src} alt={key.title} width={300} height={300} className="rounded-md  h-full w-full " />

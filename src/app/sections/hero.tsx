@@ -9,7 +9,7 @@ import { useAppStore } from "@/lib/store";
 import Link from "next/link";
 
 const Hero = () => {
-  const { setStory, setLoading, isLoading } = useAppStore();
+  const { setStory, setLoading, isLoading , language } = useAppStore();
   const [text, setText] = useState("");
 
   const handleChangeText = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -23,7 +23,7 @@ const Hero = () => {
     setStory("");
     setLoading(true);
     try {
-      const story = await generateStory(text);
+      const story = await generateStory(text , language);
       setStory(story);
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
@@ -50,7 +50,7 @@ const Hero = () => {
             onClick={handleGenerateStory}
             className="bg-[#FF7F3E] text-white font-bold px-6 py-2 rounded-lg shadow-md hover:bg-green-500 transition"
           >
-            Create
+            {language === "en" ? "Imagine and Create ✨📖" : "דמיין וצור ✨📖"}
           </button>
         </Link>
       </div>
