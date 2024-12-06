@@ -23,6 +23,7 @@ const StoryResponse = () => {
   const [volume, setVolume] = useState(1); // Default volume at max
   const [error, setError] = useState<string | null>(null);
 
+  
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
@@ -96,6 +97,46 @@ const StoryResponse = () => {
       audioRef.current.volume = newVolume;
     }
   };
+
+  const handleTextToSpeech = async () => {
+
+    setIsLoading(true);
+
+    try {
+      // Send request to our API route
+      const response = await fetch('/api/stream-story', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ 
+          text: story,
+          voice: voice, 
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to generate speech');
+      }
+
+      // Convert response to blob
+      const blob = await response.blob();
+      
+      // Create a URL for the blob
+      const audioUrl = URL.createObjectURL(blob);
+      
+      // Set the audio source and play
+      if (audioRef.current) {
+        audioRef.current.src = audioUrl;
+        await audioRef.current.play();
+      }
+    } catch (error) {
+      console.error('Error generating speech:', error);
+      alert('Failed to generate speech');
+    } finally {
+      setIsLoading(false);
+    }
+  };
   return (
     <div className="relative h-screen  ">
       <div className="flex flex-col items-center justify-center h-full px-4 py-8">
@@ -132,7 +173,7 @@ const StoryResponse = () => {
           {/* Action Buttons */}
           <div className="flex flex-col sm:flex-row items-center justify-between mt-6">
             <button
-              onClick={handleSpeakerClick}
+              onClick={handleTextToSpeech}
               className="bg-orange-500 text-white font-bold px-4 py-2 rounded shadow-md w-full sm:w-auto mb-4 sm:mb-0"
               disabled={isLoading || !story || isPlaying}
             >
@@ -173,7 +214,7 @@ const StoryResponse = () => {
           {/* Error and Audio Controls */}
           {error && <p className="text-red-500 text-center mt-4">{error}</p>}
           <div className="flex gap-2 items-center justify-center w-full mt-6">
-            {audioUrl && <audio ref={audioRef} src={audioUrl} controls onPlay={() => setIsPlaying(true)} onPause={() => setIsPlaying(false)} />}
+            { <audio ref={audioRef}  controls onPlay={() => setIsPlaying(true)} onPause={() => setIsPlaying(false)} />}
           </div>
         </div>
       </div>

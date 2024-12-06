@@ -29,3 +29,19 @@ export const generateSpeech = async (input: string | null, voice: string): Promi
     throw new Error("An error occurred with speech generation. Please try again.");
   }
 };
+// export const generateStoryStream = async (text: string , voice: string) => {
+//   try {
+//     const res = await axios.post("/api/stream", { text, voice });
+
+//     if (res.status === 200 && res.data) {
+//       const blob = await res.blob();
+      
+//       // Create a URL for the blob
+//       const audioUrl = URL.createObjectURL(blob);
+//     }
+//     return "Sorry, the speech generation failed. Please try again.";
+//   } catch (error) {
+//     console.error("Unexpected error:", error);
+//     throw new Error("An error occurred with speech generation. Please try again.");
+//   }
+// }
