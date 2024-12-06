@@ -23,7 +23,7 @@ export async function POST(request: Request) {
     // - "english": The story in English.
     // - "hebrew": The story translated into Hebrew.`;
     const storyPrompt =  `
-      Write an engaging story for children in  ${language === "en" ? "English" : "Hebrew"} language about ${prompt}. Keep the story moderately long (around 50-80 words) with simple vocabulary suitable for children.
+      Write an engaging story for children in  ${language === "en" ? "English" : "Hebrew"} language about ${prompt}. Keep the story moderately long (around 150-300 words) with simple vocabulary suitable for children.
        Ensure the story has a clear beginning, middle, and end, with a positive moral or lesson.
     `
 
