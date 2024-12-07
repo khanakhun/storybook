@@ -7,14 +7,13 @@ import leftTree from "../assets/svg/leftt.svg";
 import rightTree from "../assets/svg/rightt.svg";
 import Image from "next/image";
 import { useAppStore } from "@/lib/store";
-import { formatStory } from "@/lib/formattext";
 import { generateSpeech } from "../services/api";
 import AvatarSwapper from "../global-components/AvatarSwapper";
 import Typewriter from "../global-components/TypeWritter";
 
 const StoryResponse = () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const { story , language }: any = useAppStore();
+  const { story, language }: any = useAppStore();
 
   const [isLoading, setIsLoading] = useState(false);
   const [audioUrl, setAudioUrl] = useState<string | null>(null);
@@ -31,7 +30,6 @@ const StoryResponse = () => {
     };
   }, [audioUrl]);
 
-  const formattedStory = formatStory(story || "");
   const handleSpeakerClick = async () => {
     setIsLoading(true);
     setError(null);
@@ -116,16 +114,16 @@ const StoryResponse = () => {
 
           {/* Title and Voice Selector */}
           <div className="flex flex-wrap justify-between items-center mb-4">
-            <h2 className="text-orange-500 font-bold text-2xl sm:text-3xl">{ language == "en" ? "Your Special Story" : "סיפור מיוחד שלך"}</h2>
+            <h2 className="text-orange-500 font-bold text-2xl sm:text-3xl">{language == "en" ? "Your Special Story" : "סיפור מיוחד שלך"}</h2>
             <div className="text-right w-full sm:w-auto mt-2 sm:mt-0">
               <AvatarSwapper handleVoiceChange={handleVoiceChange} />
             </div>
           </div>
 
           {/* Story Text */}
-          {formattedStory && (
+          {story && (
             <div className="text-[#FF7F3E] text-lg sm:text-xl leading-relaxed mt-5 mb-6">
-              <Typewriter text={formattedStory[0]?.props?.children} delay={50} />
+              <Typewriter text={story} delay={50} />
             </div>
           )}
 
@@ -136,8 +134,7 @@ const StoryResponse = () => {
               className="bg-orange-500 text-white font-bold px-4 py-2 rounded shadow-md w-full sm:w-auto mb-4 sm:mb-0"
               disabled={isLoading || !story || isPlaying}
             >
-              {isLoading ? (language == "en" ? "Story Time Begins!" : "זמן סיפור מתחיל!") : (language == "en" ? "Play My Story" : "נגן את הסיפור שלי")}
-             
+              {isLoading ? (language == "en" ? "Story Time Begins!" : "זמן סיפור מתחיל!") : language == "en" ? "Play My Story" : "נגן את הסיפור שלי"}
             </button>
 
             {audioUrl && (
