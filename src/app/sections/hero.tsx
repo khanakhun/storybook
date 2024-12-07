@@ -50,6 +50,7 @@ const Hero = () => {
         setEnglishStory(englishStory);
         setEnglishLoading(false); // Stop English loading when done
       }
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       // Handle error and set stories as error message if needed
       setEnglishStory(error.message);
