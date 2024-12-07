@@ -12,10 +12,11 @@ import Image from "next/image";
 import { toast } from "react-toastify";
 
 export const KidCarousel = () => {
-  const { setHebrewStory, setEnglishStory, setHebrewLoading, setEnglishLoading, isLoadingEnglish, isLoadingHebrew, language } = useAppStore();
+  const { setStoryImage, setHebrewStory, setEnglishStory, setHebrewLoading, setEnglishLoading, isLoadingEnglish, isLoadingHebrew, language } =
+    useAppStore();
 
   const handleGenerateStory = useCallback(
-    async (storyPrompt: string) => {
+    async (storyPrompt: string, image: string) => {
       if (!storyPrompt.trim()) {
         toast("Please select or enter a valid story prompt!");
         return;
@@ -25,7 +26,7 @@ export const KidCarousel = () => {
         toast("A story is already being generated, please wait.");
         return;
       }
-
+      setStoryImage(image);
       // Start loading for both languages
       setEnglishLoading(true);
       setHebrewLoading(true);
@@ -69,7 +70,7 @@ export const KidCarousel = () => {
       <CarouselContent className="-ml-1">
         {staticStories.map((story: any, index: number) => (
           <CarouselItem key={index} className="pl-4 pr-4 md:basis-1/2 lg:basis-1/3">
-            <Link href={"/#storyloader"} onClick={() => handleGenerateStory(story.title[language])}>
+            <Link href={"/#storyloader"} onClick={() => handleGenerateStory(story.title[language], story.image.src)}>
               <Card>
                 <CardContent className="flex justify-center items-center p-1">
                   <Image src={story.image.src} alt={story.title[language]} width={300} height={300} className="rounded-md h-full w-full" />

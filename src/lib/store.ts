@@ -14,6 +14,8 @@ type StoryState = {
   isLoadingHebrew: boolean;
   setEnglishLoading: (loadingState: boolean) => void;
   setHebrewLoading: (loadingState: boolean) => void;
+  storyImage: string | null;
+  setStoryImage: (newImage: string | null) => void; // New setter for the story image
 };
 
 type AppState = LanguageState & StoryState;
@@ -31,4 +33,7 @@ export const useAppStore = create<AppState>((set) => ({
   isLoadingHebrew: false,
   setEnglishLoading: (loadingState: boolean) => set(() => ({ isLoadingEnglish: loadingState })),
   setHebrewLoading: (loadingState: boolean) => set(() => ({ isLoadingHebrew: loadingState })),
+
+  storyImage: null, // Initial state for story image
+  setStoryImage: (newImage: string | null) => set(() => ({ storyImage: newImage })), // Function to set story image
 }));

@@ -12,7 +12,7 @@ import AvatarSwapper from "../global-components/AvatarSwapper";
 import Typewriter from "../global-components/TypeWritter";
 
 const StoryResponse = () => {
-  const { englishStory, hebrewStory, language } = useAppStore();
+  const { englishStory, hebrewStory, language, storyImage } = useAppStore();
 
   const [isLoading, setIsLoading] = useState(false);
   const [audioUrl, setAudioUrl] = useState<string | null>(null);
@@ -58,6 +58,7 @@ const StoryResponse = () => {
       } else {
         setAudioUrl(response.audioUrl);
       }
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       setError(language === "en" ? `Error: ${error.message}` : `שגיאה: ${error.message}`);
     } finally {
@@ -92,7 +93,7 @@ const StoryResponse = () => {
       setIsPlaying(false);
     }
   };
-
+  console.log(englishStory, "englishStory");
   return (
     <div className="relative h-screen">
       <div className="flex flex-col items-center justify-center h-full px-4 py-8">
@@ -114,11 +115,14 @@ const StoryResponse = () => {
           {/* Title and Voice Selector */}
           <div className="flex flex-wrap justify-between items-center mb-4">
             <h2 className="text-orange-500 font-bold text-2xl sm:text-3xl">{language === "en" ? "Your Special Story" : "סיפור מיוחד שלך"}</h2>
+
             <div className="text-right w-full sm:w-auto mt-2 sm:mt-0">
               <AvatarSwapper handleVoiceChange={handleVoiceChange} />
             </div>
           </div>
-
+          <div className="flex justify-center">
+            {storyImage && <Image className="rounded-lg" src={storyImage} alt="Left Cloud" width={196} height={90} />}
+          </div>
           {/* Story Text */}
           {language === "en" && englishStory ? (
             <div className="text-[#FF7F3E] text-lg sm:text-xl leading-relaxed mt-5 mb-6">

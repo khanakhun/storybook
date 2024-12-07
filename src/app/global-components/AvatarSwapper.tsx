@@ -3,24 +3,25 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import fableimage from "../assets/voices/fable.png";
 import echoimage from "../assets/voices/echo.jpg";
 import alloyimage from "../assets/voices/alloy.png";
+import onyximage from "../assets/voices/onyx.jpg";
+import novaimage from "../assets/voices/nova.jpg";
+import shimmerimage from "../assets/voices/sh.jpg";
 
 // Updated voices array
-const voices = [
-  {
-    value: "alloy",
-    label: "Alloy",
-    image: alloyimage,
-  },
-  {
-    value: "echo",
-    label: "Echo",
-    image: echoimage,
-  },
-  {
-    value: "fable",
-    label: "Fable",
-    image: fableimage,
-  },
+type Voice = {
+  value: string;
+  label: string;
+  image: { src: string };
+};
+
+// Voices array with new voices
+const voices: Voice[] = [
+  { value: "alloy", label: "Alloy", image: alloyimage },
+  { value: "echo", label: "Echo", image: echoimage },
+  { value: "fable", label: "Fable", image: fableimage },
+  { value: "onyx", label: "Onyx", image: onyximage }, // New voice
+  { value: "nova", label: "Nova", image: novaimage }, // New voice
+  { value: "shimmer", label: "Shimmer", image: shimmerimage }, // New voice
 ];
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
