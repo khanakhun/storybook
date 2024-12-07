@@ -6,10 +6,14 @@ type LanguageState = {
 };
 
 type StoryState = {
-  story: string | null;
-  setStory: (newStory: string) => void;
-  isLoading: boolean;
-  setLoading: (loadingState: boolean) => void;
+  englishStory: string | null;
+  hebrewStory: string | null;
+  setEnglishStory: (newStory: string) => void;
+  setHebrewStory: (newStory: string) => void;
+  isLoadingEnglish: boolean;
+  isLoadingHebrew: boolean;
+  setEnglishLoading: (loadingState: boolean) => void;
+  setHebrewLoading: (loadingState: boolean) => void;
 };
 
 type AppState = LanguageState & StoryState;
@@ -18,9 +22,13 @@ export const useAppStore = create<AppState>((set) => ({
   language: "en",
   setLanguage: (newLanguage: "en" | "he") => set(() => ({ language: newLanguage })),
 
-  // Story state
-  story: null,
-  setStory: (newStory: string) => set(() => ({ story: newStory })),
-  isLoading: false,
-  setLoading: (loadingState: boolean) => set(() => ({ isLoading: loadingState })),
+  englishStory: null,
+  hebrewStory: null,
+  setEnglishStory: (newStory: string) => set(() => ({ englishStory: newStory })),
+  setHebrewStory: (newStory: string) => set(() => ({ hebrewStory: newStory })),
+
+  isLoadingEnglish: false,
+  isLoadingHebrew: false,
+  setEnglishLoading: (loadingState: boolean) => set(() => ({ isLoadingEnglish: loadingState })),
+  setHebrewLoading: (loadingState: boolean) => set(() => ({ isLoadingHebrew: loadingState })),
 }));

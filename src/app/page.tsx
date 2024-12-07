@@ -10,11 +10,9 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import PreStories from "./sections/pre-stories";
 
-const page = () => {
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const { story, isLoading } = useAppStore();
+const Page = () => {
+  const { englishStory, hebrewStory, isLoadingEnglish, isLoadingHebrew, language } = useAppStore();
 
-  // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
     AOS.init({
       duration: 2000,
@@ -32,16 +30,55 @@ const page = () => {
       <div className="h-screen w-full flex justify-center items-center">
         <Hero />
       </div>
-      {isLoading && (
-        <div id="storyloader" className="h-screen w-full flex justify-center items-center">
-          <StoryLoader />
-        </div>
+
+      {/* Show the story or loader based on the selected language */}
+      {language === "en" && (
+        <>
+          {isLoadingEnglish ? (
+            <div id="storyloader" className="h-screen w-full flex justify-center items-center">
+              <StoryLoader />
+            </div>
+          ) : (
+            englishStory && (
+              <div className="h-screen w-full flex justify-center items-center">
+                <StoryResponse />
+              </div>
+            )
+          )}
+
+          {/* Background loader for Hebrew */}
+          {isLoadingHebrew && (
+            <div className="absolute invisible">
+              <StoryLoader />
+            </div>
+          )}
+        </>
       )}
-      {story && (
-        <div className="h-screen w-full flex justify-center items-center">
-          <StoryResponse />
-        </div>
+
+      {language === "he" && (
+        <>
+          {isLoadingHebrew ? (
+            <div id="storyloader" className="h-screen w-full flex justify-center items-center">
+              <StoryLoader />
+            </div>
+          ) : (
+            hebrewStory && (
+              <div className="h-screen w-full flex justify-center items-center">
+                <StoryResponse />
+              </div>
+            )
+          )}
+
+          {/* Background loader for English */}
+          {isLoadingEnglish && (
+            <div className="absolute invisible">
+              <StoryLoader />
+            </div>
+          )}
+        </>
       )}
+
+      {/* PreStories section */}
       <div id="Listen" className="h-screen w-full">
         <PreStories />
       </div>
@@ -49,4 +86,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

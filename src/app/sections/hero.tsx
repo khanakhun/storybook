@@ -9,29 +9,55 @@ import { useAppStore } from "@/lib/store";
 import Link from "next/link";
 
 const Hero = () => {
-  const { setStory, setLoading, isLoading , language } = useAppStore();
+  const { setHebrewStory, setEnglishStory, setHebrewLoading, setEnglishLoading, isLoadingEnglish, isLoadingHebrew, language } = useAppStore(); // Accessing loading states and setter functions for both languages
+
   const [text, setText] = useState("");
 
   const handleChangeText = (event: React.ChangeEvent<HTMLInputElement>) => {
     setText(event.target.value);
   };
+
   const handleGenerateStory = useCallback(async () => {
     if (!text.trim()) {
       toast("Please enter a prompt!");
       return;
     }
-    setStory("");
-    setLoading(true);
+
+    // Start loading for both languages
+    setEnglishLoading(true);
+    setHebrewLoading(true);
+
     try {
-      const story = await generateStory(text , language);
-      setStory(story);
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      // Fetch the story for the selected language (English or Hebrew)
+      if (language === "en") {
+        // Fetch English story and update its loading state
+        const englishStory = await generateStory(text, "en");
+        setEnglishStory(englishStory);
+        setEnglishLoading(false); // Stop English loading when done
+
+        // Fetch Hebrew story in the background
+        const hebrewStory = await generateStory(text, "he");
+        setHebrewStory(hebrewStory);
+        setHebrewLoading(false); // Stop Hebrew loading when done
+      } else {
+        // Fetch Hebrew story and update its loading state
+        const hebrewStory = await generateStory(text, "he");
+        setHebrewStory(hebrewStory);
+        setHebrewLoading(false); // Stop Hebrew loading when done
+
+        // Fetch English story in the background
+        const englishStory = await generateStory(text, "en");
+        setEnglishStory(englishStory);
+        setEnglishLoading(false); // Stop English loading when done
+      }
     } catch (error: any) {
-      setStory(error.message);
-    } finally {
-      setLoading(false);
+      // Handle error and set stories as error message if needed
+      setEnglishStory(error.message);
+      setHebrewStory(error.message);
+      setEnglishLoading(false);
+      setHebrewLoading(false);
     }
-  }, [text]);
+  }, [text, language, setEnglishStory, setHebrewStory, setEnglishLoading, setHebrewLoading]);
 
   const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
@@ -44,7 +70,13 @@ const Hero = () => {
       <ToastContainer position="top-center" autoClose={5000} />
       <HeroText />
       <div className="flex gap-3 md:flex-row flex-col justify-center items-center p-2">
-        <InputBar value={text} onChange={handleChangeText} onKeyDown={handleKeyPress} onSearch={handleGenerateStory} loading={isLoading} />
+        <InputBar
+          value={text}
+          onChange={handleChangeText}
+          onKeyDown={handleKeyPress}
+          onSearch={handleGenerateStory}
+          loading={isLoadingEnglish || isLoadingHebrew} // Show loading if either language is being fetched
+        />
         <Link href={"/#storyloader"}>
           <button
             onClick={handleGenerateStory}
