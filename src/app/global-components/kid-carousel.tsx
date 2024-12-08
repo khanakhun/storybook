@@ -75,8 +75,8 @@ export const KidCarousel = () => {
                 <CardContent className="flex justify-center items-center p-1">
                   <Image src={story.image.src} alt={story.title[language]} width={300} height={300} className="rounded-md h-full w-full" />
                 </CardContent>
-                <div className="text-start text-red-500 h-[50px]">{story.title[language]}</div>
-                <div className="text-start text-sm h-[100px]">{story.description[language]}</div>
+                <div className="text-start text-red-500 h-[50px] pl-2.5">{story.title[language]}</div>
+                <div className="text-start text-sm h-[100px] pl-2.5">{story.description[language]}</div>
               </Card>
             </Link>
           </CarouselItem>

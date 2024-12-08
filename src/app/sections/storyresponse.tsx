@@ -15,7 +15,8 @@ const StoryResponse = () => {
   const { englishStory, hebrewStory, language, storyImage } = useAppStore();
 
   const [isLoading, setIsLoading] = useState(false);
-  const [audioUrl, setAudioUrl] = useState<string | null>(null);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [audioUrl, setAudioUrl] = useState<string | null | any>(null);
   const [voice, setVoice] = useState("alloy");
   const [isPlaying, setIsPlaying] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -93,9 +94,8 @@ const StoryResponse = () => {
       setIsPlaying(false);
     }
   };
-  console.log(englishStory, "englishStory");
   return (
-    <div className="relative h-screen">
+    <div className="relative h-screen mb-20">
       <div className="flex flex-col items-center justify-center h-full px-4 py-8">
         <div className="relative bg-white shadow-lg rounded-lg p-6 border-4 border-orange-500 max-w-4xl w-full text-center">
           {/* Decorative Images */}
@@ -126,18 +126,18 @@ const StoryResponse = () => {
           {/* Story Text */}
           {language === "en" && englishStory ? (
             <div className="text-[#FF7F3E] text-lg sm:text-xl leading-relaxed mt-5 mb-6">
-              <Typewriter text={englishStory} delay={50} />
+              <Typewriter text={englishStory} delay={30} />
             </div>
           ) : language === "he" && hebrewStory ? (
             <div className="text-[#FF7F3E] text-lg sm:text-xl leading-relaxed mt-5 mb-6">
-              <Typewriter text={hebrewStory} delay={50} />
+              <Typewriter text={hebrewStory} delay={30} />
             </div>
           ) : (
             <p className="text-red-500 mt-4">{language === "en" ? "No story available." : "אין סיפור זמין."}</p>
           )}
 
           {/* Action Buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-between mt-6">
+          <div className={`flex flex-col sm:flex-row items-center  mt-6 ${audioUrl ? "justify-between " : "justify-center"} `}>
             <button
               onClick={handleSpeakerClick}
               className="bg-orange-500 text-white font-bold px-4 py-2 rounded shadow-md w-full sm:w-auto mb-4 sm:mb-0"
@@ -147,7 +147,7 @@ const StoryResponse = () => {
             </button>
 
             {audioUrl && (
-              <div className="flex gap-4 justify-center items-center w-full sm:w-auto">
+              <div className={`flex gap-4  justify-center items-center w-full sm:w-auto`}>
                 <button onClick={handlePlayPause} className="bg-blue-500 text-white font-bold px-4 py-2 rounded shadow-md w-full sm:w-auto">
                   {isPlaying ? "Pause" : "Play"}
                 </button>
@@ -156,13 +156,25 @@ const StoryResponse = () => {
                 </button>
               </div>
             )}
+            {audioUrl && (
+              <a href={audioUrl} download={`story-audio.mp3`} className="bg-green-500 text-white font-bold px-4 py-2 rounded shadow-md">
+                Download Audio
+              </a>
+            )}
           </div>
 
           {/* Error and Audio Controls */}
           {error && <p className="text-red-500 text-center mt-4">{error}</p>}
           {audioUrl && (
-            <div className="mt-6">
-              <audio ref={audioRef} src={audioUrl} controls onPlay={() => setIsPlaying(true)} onPause={() => setIsPlaying(false)} />
+            <div className="mt-6 flex justify-center">
+              <audio
+                ref={audioRef}
+                src={audioUrl}
+                controls
+                onPlay={() => setIsPlaying(true)}
+                onPause={() => setIsPlaying(false)}
+                controlsList="nodownload"
+              />
             </div>
           )}
         </div>
