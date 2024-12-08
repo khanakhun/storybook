@@ -16,7 +16,7 @@ const PreStories = () => {
             ? "Pick a card to unlock a magical story just for you! Each card holds a unique adventure—click to discover the fun and excitement waiting inside. Let the storytelling begin!"
             : "בחרו כרטיס כדי לחשוף סיפור קסום רק בשבילכם! כל כרטיס מחביא הרפתקה ייחודית—לחצו כדי לגלות את הכיף וההתרגשות שמחכים לכם. שיהיה בכיף!"}
         </p>
-        <div className="flex justify-center flex-col items-center">
+        <div className="flex justify-center flex-col items-center p-[60px] lg:p-1">
           <div className="h-20" />
           <KidCarousel />
           <div className="h-10" />
