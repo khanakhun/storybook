@@ -4,6 +4,7 @@ import OpenAI from "openai";
 // Initialize OpenAI SDK
 const openai = new OpenAI();
 
+export const maxDuration = 60;
 export async function POST(request: Request) {
   try {
     // Parse the request body to extract the prompt and language

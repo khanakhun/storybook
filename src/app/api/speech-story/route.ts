@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 
+export const maxDuration = 60;
 export async function POST(request: Request) {
   try {
     // Parse the request body to extract the input text and voice parameters
