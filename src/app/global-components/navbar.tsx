@@ -21,7 +21,7 @@ const Header: React.FC = () => {
   const toggleDropdown = () => setIsDropdownOpen((prev) => !prev);
   const toggleMobileMenu = () => setIsMobileMenuOpen((prev) => !prev);
 
-  const menuItems = ["Create", "Listen"];
+  const menuItems = ["Stories"];
   const socialIcons = [
     { src: fbIcon, alt: "Facebook" },
     { src: igIcon, alt: "Instagram" },
