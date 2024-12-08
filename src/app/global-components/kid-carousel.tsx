@@ -66,10 +66,10 @@ export const KidCarousel = () => {
   );
 
   return (
-    <Carousel className="w-[60%]">
+    <Carousel className="w-full sm:w-[80%] md:w-[70%] lg:w-[60%] mx-auto">
       <CarouselContent className="-ml-1">
         {staticStories.map((story: any, index: number) => (
-          <CarouselItem key={index} className="pl-4 pr-4 md:basis-1/2 lg:basis-1/3">
+          <CarouselItem key={index} className="pl-4 pr-4 sm:basis-full md:basis-1/2 lg:basis-1/3">
             <Link href={"/#storyloader"} onClick={() => handleGenerateStory(story.title[language], story.image.src)}>
               <Card>
                 <CardContent className="flex justify-center items-center p-1">

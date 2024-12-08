@@ -70,7 +70,7 @@ const Hero = () => {
     <div className="">
       <ToastContainer position="top-center" autoClose={5000} />
       <HeroText />
-      <div className="flex gap-3 md:flex-row flex-col justify-center items-center p-2">
+      <div className="flex gap-3 lg:flex-row flex-col justify-center items-center p-2">
         <InputBar
           value={text}
           onChange={handleChangeText}

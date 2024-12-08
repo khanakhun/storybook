@@ -95,20 +95,20 @@ const StoryResponse = () => {
     }
   };
   return (
-    <div className="relative h-screen mb-20">
+    <div className="relative  mb-20">
       <div className="flex flex-col items-center justify-center h-full px-4 py-8">
         <div className="relative bg-white shadow-lg rounded-lg p-6 border-4 border-orange-500 max-w-4xl w-full text-center">
           {/* Decorative Images */}
-          <div className="absolute -top-12 -left-12 hidden sm:block">
+          <div className="absolute -top-12 -left-12 hidden lg:block">
             <Image src={leftCloud} alt="Left Cloud" width={196} height={90} />
           </div>
-          <div className="absolute -top-32 -right-52 hidden sm:block">
+          <div className="absolute -top-32 -right-32 hidden lg:block">
             <Image src={rightCloud} alt="Right Cloud" width={366} height={147} />
           </div>
-          <div className="absolute -bottom-20 -left-52 hidden sm:block">
+          <div className="absolute -bottom-20 -left-52 hidden lg:block">
             <Image src={leftTree} alt="Left Tree" width={307} height={121} />
           </div>
-          <div className="absolute -bottom-20 -right-52 hidden sm:block">
+          <div className="absolute -bottom-20 -right-32 hidden lg:block">
             <Image src={rightTree} alt="Right Tree" width={307} height={121} />
           </div>
 
@@ -137,7 +137,7 @@ const StoryResponse = () => {
           )}
 
           {/* Action Buttons */}
-          <div className={`flex flex-col sm:flex-row items-center  mt-6 ${audioUrl ? "justify-between " : "justify-center"} `}>
+          <div className={`flex flex-col gap-2 sm:flex-row items-center  mt-6 ${audioUrl ? "justify-between " : "justify-center"} `}>
             <button
               onClick={handleSpeakerClick}
               className="bg-orange-500 text-white font-bold px-4 py-2 rounded shadow-md w-full sm:w-auto mb-4 sm:mb-0"

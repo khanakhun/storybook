@@ -40,7 +40,7 @@ const AvatarSwapper = ({ handleVoiceChange }: { handleVoiceChange: (voice: strin
 
   return (
     <TooltipProvider>
-      <div className="flex gap-4">
+      <div className="flex gap-4 flex-wrap justify-center ">
         {/* Other Avatars with Tooltip */}
         <div className="flex gap-2">
           {otherImages.map((voice, index) => (
