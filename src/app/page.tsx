@@ -27,7 +27,7 @@ const Page = () => {
     <div>
       <ToastContainer position="top-center" autoClose={5000} />
       <Navbar />
-      <div className=" w-full flex justify-center items-center">
+      <div className=" h-full lg:h-screen w-full flex justify-center items-center">
         <Hero />
       </div>
 
@@ -35,12 +35,12 @@ const Page = () => {
       {language === "en" && (
         <>
           {isLoadingEnglish ? (
-            <div id="storyloader" className=" w-full flex justify-center items-center">
+            <div id="storyloader" className=" h-full lg:h-screen  w-full flex justify-center items-center">
               <StoryLoader />
             </div>
           ) : (
             englishStory && (
-              <div className=" w-full flex justify-center items-center">
+              <div className=" h-full lg:h-screen  w-full flex justify-center items-center">
                 <StoryResponse />
               </div>
             )
@@ -58,12 +58,12 @@ const Page = () => {
       {language === "he" && (
         <>
           {isLoadingHebrew ? (
-            <div id="storyloader" className=" w-full flex justify-center items-center">
+            <div id="storyloader" className=" h-full lg:h-screen  w-full flex justify-center items-center">
               <StoryLoader />
             </div>
           ) : (
             hebrewStory && (
-              <div className=" w-full flex justify-center items-center">
+              <div className="h-full lg:h-screen  w-full flex justify-center items-center">
                 <StoryResponse />
               </div>
             )
@@ -79,7 +79,7 @@ const Page = () => {
       )}
 
       {/* PreStories section */}
-      <div id="Listen" className=" w-full">
+      <div id="Stories" className="h-full lg:h-screen  w-full">
         <PreStories />
       </div>
     </div>
