@@ -24,7 +24,15 @@ const voices: Voice[] = [
   { value: "shimmer", label: "Shimmer", image: shimmerimage },
 ];
 
-const AvatarCarousel = ({ handleVoiceChange, voice }: { handleVoiceChange: (voice: string) => void; voice: string }) => {
+const AvatarCarousel = ({
+  handleVoiceChange,
+  voice,
+  handleSpeakerClick,
+}: {
+  handleVoiceChange: (voice: string) => void;
+  voice: string;
+  handleSpeakerClick: () => void;
+}) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const handleNext = () => {
@@ -57,7 +65,10 @@ const AvatarCarousel = ({ handleVoiceChange, voice }: { handleVoiceChange: (voic
               <TooltipTrigger asChild>
                 <Avatar
                   className={`cursor-pointer ${voice === item.value ? "w-[80px] h-[80px] border-4 border-[#F26F23]" : "w-[60px] h-[60px]"}`}
-                  onClick={() => handleVoiceChange(item.value)}
+                  onClick={() => {
+                    handleVoiceChange(item.value); // Change the voice
+                    handleSpeakerClick(); // Trigger the speaker function
+                  }}
                 >
                   <AvatarImage src={item.image.src} />
                   <AvatarFallback>{item.label[0]}</AvatarFallback>
