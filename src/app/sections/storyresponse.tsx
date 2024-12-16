@@ -117,7 +117,7 @@ const StoryResponse = () => {
             <h2 className="text-orange-500 font-bold text-2xl sm:text-3xl">{language === "en" ? "Your Special Story" : "סיפור מיוחד שלך"}</h2>
 
             <div className="text-right w-full sm:w-auto mt-2 sm:mt-0">
-              <AvatarSwapper handleVoiceChange={handleVoiceChange} />
+              <AvatarSwapper handleVoiceChange={handleVoiceChange} voice={voice} />
             </div>
           </div>
           <div className="flex justify-center">
