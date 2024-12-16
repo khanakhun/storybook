@@ -7,6 +7,7 @@ import { generateSpeech } from "../services/api";
 import AvatarSwapper from "../global-components/AvatarSwapper";
 import Typewriter from "../global-components/TypeWritter";
 import Clouds from "../static-components/clouds";
+import { toast } from "react-toastify";
 
 const StoryResponse = () => {
   const {
@@ -40,6 +41,7 @@ const StoryResponse = () => {
   }, [englishVoiceStory, hebrewVoiceStory]);
 
   const handleGenerateVoice = useCallback(async () => {
+    if (!hebrewStory || !englishStory) return toast.success("Just a moment! Your magical story is almost ready!");
     setHebrewVoiceLoader(true);
     setEnglishVoiceLoader(true);
 
