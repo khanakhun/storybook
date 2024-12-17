@@ -7,7 +7,6 @@ import { generateSpeech } from "../services/api";
 import AvatarSwapper from "../global-components/AvatarSwapper";
 import Typewriter from "../global-components/TypeWritter";
 import Clouds from "../static-components/clouds";
-import { toast } from "react-toastify";
 
 const StoryResponse = () => {
   const {
@@ -42,7 +41,7 @@ const StoryResponse = () => {
 
   const handleGenerateVoice = useCallback(async () => {
     if (!hebrewStory || !englishStory) {
-      toast("Just a moment! Your magical story is almost ready!");
+      alert("Just a moment! Your magical story is almost ready!");
       return;
     }
     setHebrewVoiceLoader(true);
@@ -303,10 +302,10 @@ const StoryResponse = () => {
                   disabled={hebrewVoiceLoader || isPlayingHebrew}
                 >
                   {hebrewVoiceLoader
-                    ? language === "en"
+                    ? language === "he"
                       ? "Generating Audio..."
                       : "יוצר אודיו..."
-                    : language === "en"
+                    : language === "he"
                     ? "Play My Story"
                     : "נגן את הסיפור שלי"}
                 </button>
