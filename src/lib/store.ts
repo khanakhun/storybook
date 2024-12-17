@@ -16,6 +16,16 @@ type StoryState = {
   setHebrewLoading: (loadingState: boolean) => void;
   storyImage: string | null;
   setStoryImage: (newImage: string | null) => void; // New setter for the story image
+
+  // New voice story variables and loaders
+  englishVoiceStory: string | null;
+  hebrewVoiceStory: string | null;
+  setEnglishVoiceStory: (newVoiceStory: string | null) => void;
+  setHebrewVoiceStory: (newVoiceStory: string | null) => void;
+  englishVoiceLoader: boolean;
+  hebrewVoiceLoader: boolean;
+  setEnglishVoiceLoader: (loadingState: boolean) => void;
+  setHebrewVoiceLoader: (loadingState: boolean) => void;
 };
 
 type AppState = LanguageState & StoryState;
@@ -35,5 +45,16 @@ export const useAppStore = create<AppState>((set) => ({
   setHebrewLoading: (loadingState: boolean) => set(() => ({ isLoadingHebrew: loadingState })),
 
   storyImage: null, // Initial state for story image
-  setStoryImage: (newImage: string | null) => set(() => ({ storyImage: newImage })), // Function to set story image
+  setStoryImage: (newImage: string | null) => set(() => ({ storyImage: newImage })),
+
+  // New state and functions for voice story and loaders
+  englishVoiceStory: null,
+  hebrewVoiceStory: null,
+  setEnglishVoiceStory: (newVoiceStory: string | null) => set(() => ({ englishVoiceStory: newVoiceStory })),
+  setHebrewVoiceStory: (newVoiceStory: string | null) => set(() => ({ hebrewVoiceStory: newVoiceStory })),
+
+  englishVoiceLoader: false,
+  hebrewVoiceLoader: false,
+  setEnglishVoiceLoader: (loadingState: boolean) => set(() => ({ englishVoiceLoader: loadingState })),
+  setHebrewVoiceLoader: (loadingState: boolean) => set(() => ({ hebrewVoiceLoader: loadingState })),
 }));

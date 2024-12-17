@@ -1,21 +1,20 @@
 import React, { useState } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import fableimage from "../assets/voices/fable.webp";
 import echoimage from "../assets/voices/echo.webp";
 import alloyimage from "../assets/voices/alloy.webp";
 import onyximage from "../assets/voices/onyx.webp";
 import novaimage from "../assets/voices/nova.webp";
 import shimmerimage from "../assets/voices/shimmer.webp";
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
-// Define the Voice type
 type Voice = {
   value: string;
   label: string;
   image: { src: string };
 };
 
-// Voices array with new voices
 const voices: Voice[] = [
   { value: "alloy", label: "Alloy", image: alloyimage },
   { value: "echo", label: "Echo", image: echoimage },
@@ -25,53 +24,75 @@ const voices: Voice[] = [
   { value: "shimmer", label: "Shimmer", image: shimmerimage },
 ];
 
-const AvatarSwapper = ({ handleVoiceChange }: { handleVoiceChange: (voice: string) => void }) => {
-  // State to manage the images
-  const [mainImage, setMainImage] = useState(voices[0].image);
-  const [otherImages, setOtherImages] = useState(voices.slice(1));
+const AvatarCarousel = ({
+  handleVoiceChange,
+  voice,
+  handleSpeakerClick,
+}: {
+  handleVoiceChange: (voice: string) => void;
+  voice: string;
+  handleSpeakerClick: () => void;
+}) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
 
-  // Handle image swap
-  const handleImageSwap = (clickedVoice: Voice) => {
-    const newImages = otherImages.map((voice) => (voice.value === clickedVoice.value ? { ...voice, image: mainImage } : voice));
-    setOtherImages(newImages);
-    setMainImage(clickedVoice.image);
-    handleVoiceChange(clickedVoice.value);
+  const handleNext = () => {
+    if (currentIndex + 3 < voices.length) setCurrentIndex(currentIndex + 1);
   };
+
+  const handlePrev = () => {
+    if (currentIndex > 0) setCurrentIndex(currentIndex - 1);
+  };
+
+  const visibleVoices = voices.slice(currentIndex, currentIndex + 3);
 
   return (
     <TooltipProvider>
-      <div className="flex gap-4 flex-wrap justify-center ">
-        {/* Other Avatars with Tooltip */}
-        <div className="flex gap-2">
-          {otherImages.map((voice, index) => (
+      <div className="flex items-center gap-4">
+        {/* Left Navigation */}
+        <button
+          onClick={handlePrev}
+          disabled={currentIndex === 0}
+          aria-label="Previous Avatars"
+          className={`text-[#F26F23] ${currentIndex === 0 ? "opacity-50 cursor-not-allowed" : ""}`}
+        >
+          <FaArrowLeft />
+        </button>
+
+        {/* Avatars */}
+        <div className="flex gap-4">
+          {visibleVoices.map((item, index) => (
             <Tooltip key={index}>
               <TooltipTrigger asChild>
-                <Avatar className="cursor-pointer w-[50px] h-[50px]" onClick={() => handleImageSwap(voice)}>
-                  <AvatarImage src={voice.image.src} />
-                  <AvatarFallback>{voice.label[0]}</AvatarFallback>
+                <Avatar
+                  className={`cursor-pointer ${voice === item.value ? "w-[80px] h-[80px] border-4 border-[#F26F23]" : "w-[60px] h-[60px]"}`}
+                  onClick={() => {
+                    handleVoiceChange(item.value); // Change the voice
+                    handleSpeakerClick(); // Trigger the speaker function
+                  }}
+                >
+                  <AvatarImage src={item.image.src} />
+                  <AvatarFallback>{item.label[0]}</AvatarFallback>
                 </Avatar>
               </TooltipTrigger>
               <TooltipContent>
-                <p>{voice.label}</p>
+                <p>{item.label}</p>
               </TooltipContent>
             </Tooltip>
           ))}
         </div>
-        {/* Main Avatar */}
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <Avatar className="w-[100px] h-[100px] border-2 border-[#F16C27]">
-              <AvatarImage src={mainImage.src} />
-              <AvatarFallback>{voices[0].label[0]}</AvatarFallback>
-            </Avatar>
-          </TooltipTrigger>
-          <TooltipContent>
-            <p>{voices.find((v) => v.image === mainImage)?.label || "Main Voice"}</p>
-          </TooltipContent>
-        </Tooltip>
+
+        {/* Right Navigation */}
+        <button
+          onClick={handleNext}
+          disabled={currentIndex + 3 >= voices.length}
+          aria-label="Next Avatars"
+          className={`text-[#F26F23]  ${currentIndex + 3 >= voices.length ? "opacity-50 cursor-not-allowed" : ""}`}
+        >
+          <FaArrowRight />
+        </button>
       </div>
     </TooltipProvider>
   );
 };
 
-export default AvatarSwapper;
+export default AvatarCarousel;

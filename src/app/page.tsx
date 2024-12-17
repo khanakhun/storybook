@@ -9,6 +9,7 @@ import { useAppStore } from "@/lib/store";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import PreStories from "./sections/pre-stories";
+import Footer from "./global-components/footer";
 
 const Page = () => {
   const { englishStory, hebrewStory, isLoadingEnglish, isLoadingHebrew, language } = useAppStore();
@@ -27,6 +28,12 @@ const Page = () => {
     <div>
       <ToastContainer position="top-center" autoClose={5000} />
       <Navbar />
+      {/* PreStories section */}
+      <div id="Stories" className="h-full lg:h-screen  w-full">
+        <PreStories />
+      </div>
+      <div style={{ height: 250 }} />
+      {/* First section */}
       <div className=" h-full lg:h-screen w-full flex justify-center items-center">
         <Hero />
       </div>
@@ -40,7 +47,7 @@ const Page = () => {
             </div>
           ) : (
             englishStory && (
-              <div className=" h-full lg:h-screen  w-full flex justify-center items-center">
+              <div className="   w-full flex justify-center items-center">
                 <StoryResponse />
               </div>
             )
@@ -48,7 +55,7 @@ const Page = () => {
 
           {/* Background loader for Hebrew */}
           {isLoadingHebrew && (
-            <div className="absolute invisible">
+            <div className="h-full lg:h-screen absolute invisible">
               <StoryLoader />
             </div>
           )}
@@ -63,7 +70,7 @@ const Page = () => {
             </div>
           ) : (
             hebrewStory && (
-              <div className="h-full lg:h-screen  w-full flex justify-center items-center">
+              <div className="  w-full flex justify-center items-center">
                 <StoryResponse />
               </div>
             )
@@ -71,17 +78,14 @@ const Page = () => {
 
           {/* Background loader for English */}
           {isLoadingEnglish && (
-            <div className="absolute invisible">
+            <div className=" h-full lg:h-screen absolute invisible">
               <StoryLoader />
             </div>
           )}
         </>
       )}
 
-      {/* PreStories section */}
-      <div id="Stories" className="h-full lg:h-screen  w-full">
-        <PreStories />
-      </div>
+      <Footer />
     </div>
   );
 };
