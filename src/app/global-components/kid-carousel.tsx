@@ -73,7 +73,18 @@ export const KidCarousel = () => {
         setHebrewLoading(false);
       }
     },
-    [language, isLoadingEnglish, isLoadingHebrew, setEnglishStory, setHebrewStory, setEnglishLoading, setHebrewLoading, setStoryImage]
+    [
+      isLoadingEnglish,
+      isLoadingHebrew,
+      setStoryImage,
+      setEnglishLoading,
+      setHebrewLoading,
+      setHebrewVoiceStory,
+      setEnglishVoiceStory,
+      language,
+      setEnglishStory,
+      setHebrewStory,
+    ]
   );
 
   return (
