@@ -9,7 +9,18 @@ import { useAppStore } from "@/lib/store";
 import Link from "next/link";
 
 const Hero = () => {
-  const { setHebrewStory, setEnglishStory, setHebrewLoading, setEnglishLoading, isLoadingEnglish, isLoadingHebrew, language } = useAppStore(); // Accessing loading states and setter functions for both languages
+  const {
+    setHebrewStory,
+    setEnglishStory,
+    setHebrewLoading,
+    setEnglishLoading,
+    isLoadingEnglish,
+    isLoadingHebrew,
+    language,
+    setHebrewVoiceStory,
+    setEnglishVoiceStory,
+    setStoryImage,
+  } = useAppStore(); // Accessing loading states and setter functions for both languages
 
   const [text, setText] = useState("");
 
@@ -26,7 +37,9 @@ const Hero = () => {
     // Start loading for both languages
     setEnglishLoading(true);
     setHebrewLoading(true);
-
+    setHebrewVoiceStory(null);
+    setEnglishVoiceStory(null);
+    setStoryImage(null);
     try {
       // Fetch the story for the selected language (English or Hebrew)
       if (language === "en") {

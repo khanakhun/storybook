@@ -9,6 +9,7 @@ import { useAppStore } from "@/lib/store";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import PreStories from "./sections/pre-stories";
+import Footer from "./global-components/footer";
 
 const Page = () => {
   const { englishStory, hebrewStory, isLoadingEnglish, isLoadingHebrew, language } = useAppStore();
@@ -83,6 +84,8 @@ const Page = () => {
           )}
         </>
       )}
+
+      <Footer />
     </div>
   );
 };

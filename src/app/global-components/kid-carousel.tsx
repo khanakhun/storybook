@@ -12,8 +12,18 @@ import Image from "next/image";
 import { toast } from "react-toastify";
 
 export const KidCarousel = () => {
-  const { setStoryImage, setHebrewStory, setEnglishStory, setHebrewLoading, setEnglishLoading, isLoadingEnglish, isLoadingHebrew, language } =
-    useAppStore();
+  const {
+    setStoryImage,
+    setHebrewVoiceStory,
+    setEnglishVoiceStory,
+    setHebrewStory,
+    setEnglishStory,
+    setHebrewLoading,
+    setEnglishLoading,
+    isLoadingEnglish,
+    isLoadingHebrew,
+    language,
+  } = useAppStore();
 
   const handleGenerateStory = useCallback(
     async (storyPrompt: string, image: string) => {
@@ -30,7 +40,8 @@ export const KidCarousel = () => {
       // Start loading for both languages
       setEnglishLoading(true);
       setHebrewLoading(true);
-
+      setHebrewVoiceStory(null);
+      setEnglishVoiceStory(null);
       try {
         if (language === "en") {
           // Fetch English story and update its loading state

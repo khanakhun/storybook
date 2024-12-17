@@ -41,7 +41,10 @@ const StoryResponse = () => {
   }, [englishVoiceStory, hebrewVoiceStory]);
 
   const handleGenerateVoice = useCallback(async () => {
-    if (!hebrewStory || !englishStory) return toast.success("Just a moment! Your magical story is almost ready!");
+    if (!hebrewStory || !englishStory) {
+      toast("Just a moment! Your magical story is almost ready!");
+      return;
+    }
     setHebrewVoiceLoader(true);
     setEnglishVoiceLoader(true);
 
@@ -255,7 +258,7 @@ const StoryResponse = () => {
                     : "נגן את הסיפור שלי"}
                 </button>
 
-                {englishVoiceStory && (
+                {!englishVoiceLoader && englishVoiceStory && (
                   <div className={`flex gap-4  justify-center items-center w-full sm:w-auto`}>
                     <button
                       onClick={handlePlayPauseEnglish}
@@ -268,7 +271,7 @@ const StoryResponse = () => {
                     </button>
                   </div>
                 )}
-                {englishVoiceStory && (
+                {!englishVoiceLoader && englishVoiceStory && (
                   <a href={englishVoiceStory} download={`story-audio.mp3`} className="bg-green-500 text-white font-bold px-4 py-2 rounded shadow-md">
                     Download Audio
                   </a>
@@ -276,7 +279,7 @@ const StoryResponse = () => {
               </div>
 
               {/* Error and Audio Controls */}
-              {englishVoiceStory && (
+              {!englishVoiceLoader && englishVoiceStory && (
                 <div className="mt-6 flex justify-center">
                   <audio
                     ref={audioRefEnglish}
@@ -308,7 +311,7 @@ const StoryResponse = () => {
                     : "נגן את הסיפור שלי"}
                 </button>
 
-                {hebrewVoiceStory && (
+                {!hebrewVoiceLoader && hebrewVoiceStory && (
                   <div className={`flex gap-4  justify-center items-center w-full sm:w-auto`}>
                     <button onClick={handlePlayPauseHebrew} className="bg-blue-500 text-white font-bold px-4 py-2 rounded shadow-md w-full sm:w-auto">
                       {isPlayingEnglish ? "Pause" : "Play"}
@@ -318,7 +321,7 @@ const StoryResponse = () => {
                     </button>
                   </div>
                 )}
-                {hebrewVoiceStory && (
+                {!hebrewVoiceLoader && hebrewVoiceStory && (
                   <a href={hebrewVoiceStory} download={`story-audio.mp3`} className="bg-green-500 text-white font-bold px-4 py-2 rounded shadow-md">
                     Download Audio
                   </a>
@@ -326,7 +329,7 @@ const StoryResponse = () => {
               </div>
 
               {/* Error and Audio Controls */}
-              {hebrewVoiceStory && (
+              {!hebrewVoiceLoader && hebrewVoiceStory && (
                 <div className="mt-6 flex justify-center">
                   <audio
                     ref={audioRefHebrew}

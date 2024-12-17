@@ -20,8 +20,8 @@ type StoryState = {
   // New voice story variables and loaders
   englishVoiceStory: string | null;
   hebrewVoiceStory: string | null;
-  setEnglishVoiceStory: (newVoiceStory: string) => void;
-  setHebrewVoiceStory: (newVoiceStory: string) => void;
+  setEnglishVoiceStory: (newVoiceStory: string | null) => void;
+  setHebrewVoiceStory: (newVoiceStory: string | null) => void;
   englishVoiceLoader: boolean;
   hebrewVoiceLoader: boolean;
   setEnglishVoiceLoader: (loadingState: boolean) => void;
@@ -50,8 +50,8 @@ export const useAppStore = create<AppState>((set) => ({
   // New state and functions for voice story and loaders
   englishVoiceStory: null,
   hebrewVoiceStory: null,
-  setEnglishVoiceStory: (newVoiceStory: string) => set(() => ({ englishVoiceStory: newVoiceStory })),
-  setHebrewVoiceStory: (newVoiceStory: string) => set(() => ({ hebrewVoiceStory: newVoiceStory })),
+  setEnglishVoiceStory: (newVoiceStory: string | null) => set(() => ({ englishVoiceStory: newVoiceStory })),
+  setHebrewVoiceStory: (newVoiceStory: string | null) => set(() => ({ hebrewVoiceStory: newVoiceStory })),
 
   englishVoiceLoader: false,
   hebrewVoiceLoader: false,
